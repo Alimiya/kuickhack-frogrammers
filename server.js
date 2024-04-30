@@ -1,7 +1,11 @@
 const express = require('express')
-const mongoose = require('mongoose')
+// const mongoose = require('mongoose')
+// const cors = require('cors')
+const bodyParser = require('body-parser')
+const cookieParser = require('cookie-parser')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
+require("dotenv").config({path: "config/.env"})
 
 const app = express()
 
@@ -17,22 +21,30 @@ app.use('/public', express.static(path.join(__dirname + '/public')))
 app.use(express.urlencoded({extended: true}))
 app.use(express.json())
 app.use(expressLayouts)
+app.use(bodyParser.urlencoded({extended: true}))
+app.use(bodyParser.json())
+app.use(cookieParser())
+
+const renderRoute = require('./routes/renderRoute')
+
+app.use(renderRoute)
 
 app.use((req, res, next) => {
-    res.status(404).render('errors/error')
+    res.status(404).render('errors/404')
 })
 
 
 const start = async () => {
     try {
-        await mongoose
-            .connect(process.env.MONGODB_URI)
-            .then(() => {
-                console.log("Database is connected")
-            })
-            .catch((err) => {
-                console.error('Internal server error')
-            })
+        // await mongoose
+        //     .connect(process.env.MONGODB_URI)
+        //     .then(() => {
+        //         console.log("Database is connected")
+        //     })
+        //     .catch((err) => {
+        //         logger.error(err.message)
+        //         console.error('Internal server error')
+        //     })
         app.listen(process.env.PORT, () => {
             console.log(`http://localhost:${process.env.PORT}`)
         })
