@@ -14,23 +14,28 @@
                 </div>
             </div>
         </div>
-        <div class="imgput">
+        <div class="imgput mb-5">
             <div class="container">
                 <div class="imgput__body">
-                    <p>Для проверки документов вы должны загрузить:</p>
+                    <p>Для проверки документов вы должны загрузить <span class="fst-italic fw-semibold">документ удостоверения личности <span class="text-warning">(обязательно)</span></span> и <span class="fst-italic fw-semibold">фотографию лица</span>.</p>
                     <div class="imgput__inner p-4 border rounded-3" style="width: 96.5%;">
-                        <div class="imgput__element hstack justify-content-between mb-5">
-                            <div class="hstack gap-4">
-                                <div class="fw-bold">Фотография вашего лица</div>
-                                <div>
-                                    <label for="file-img-1">
-                                        <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
-                                    </label>
-                                    <input style="display: none;" type="file" class="form-control" id="file-img-1" accept="image/png, image/jpeg, image/jpg" />
+                        <div class="imgput__element mb-5 hstack justify-content-between" id="imgput-element-2">
+                            <div>
+                                <div class="hstack gap-4">
+                                    <div class="fw-bold hstack gap-2">
+                                        <span class="material-symbols-rounded fs-2">demography</span>Удостоверение личности
+                                        <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности"><span class="material-symbols-rounded text-warning">error</span></a>
+                                    </div>
+                                    <div>
+                                        <label for="file-img-2">
+                                            <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
+                                        </label>
+                                        <input style="display: none;" type="file" class="form-control" id="file-img-2" accept="image/png, image/jpeg, image/jpg">
+                                    </div>
                                 </div>
                             </div>
                             <div class="hstack gap-3">
-                                <div class="border-bottom hstack gap-3" style="width: 400px;">
+                                <div class="border-bottom hstack gap-2" style="width: 400px;">
                                     <span class="material-symbols-rounded">draft</span>
                                     <span id="file-name"></span>
                                 </div>
@@ -39,18 +44,22 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="imgput__element hstack justify-content-between">
-                            <div class="hstack gap-4">
-                                <div class="fw-bold">Фотография или скан вашего удостоверения личности</div>
-                                <div>
-                                    <label for="file-img-2">
-                                        <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
-                                    </label>
-                                    <input style="display: none;" type="file" class="form-control" id="file-img-2" accept="image/png, image/jpeg, image/jpg">
+
+                        <div class="imgput__element hstack justify-content-between" id="imgput-element-1">
+                            <div>
+                                <div class="hstack gap-4">
+                                    <div class="fw-bold hstack gap-2">
+                                        <span class="material-symbols-rounded fs-2">person_book</span>Фотография вашего лица</div>
+                                    <div>
+                                        <label for="file-img-1">
+                                            <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
+                                        </label>
+                                        <input style="display: none;" type="file" class="form-control" id="file-img-1" accept="image/png, image/jpeg, image/jpg" />
+                                    </div>
                                 </div>
                             </div>
                             <div class="hstack gap-3">
-                                <div class="border-bottom hstack gap-3" style="width: 400px;">
+                                <div class="border-bottom hstack gap-2" style="width: 400px;">
                                     <span class="material-symbols-rounded">draft</span>
                                     <span id="file-name"></span>
                                 </div>
@@ -63,167 +72,222 @@
                 </div>
             </div>
         </div>
-        <div class="swag container">
-            <div class="swag__header">
-
+        <div class="swag mb-5">
+            <div class="container">
+                <div class="swag__header">
+                    <p>Далее вы можете выбрать нужный метод обработки ваших фотографии:</p>
+                </div>
+                <div class="swag__body">
+                    <div class="swag__inner">
+                        <div class="swag__element d-flex gap-4 mb-5">
+                            <div class="swag__element__block w-100 rounded-3 p-3">
+                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                            <span class="fs-3 fw-semibold font-monospace">BIO</span>
+                                        </div>
+                                        <div class="swag__element__title fw-medium">Biometric check-up</div>
+                                        <div class="swag__element__description fw-light fst-italic">Проверка соответствию с лицом владельца</div>
+                                    </div>
+                                    <div class="inner-right hstack gap-4">
+                                        <span class="material-symbols-rounded text-warning">person_book</span>
+                                        <span class="material-symbols-rounded text-warning">demography</span>
+                                        <span class="material-symbols-rounded text-info">check_box</span>
+                                        <a href="#swag-collapse1" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse1">keyboard_arrow_left</a>
+                                    </div>
+                                </div>
+                                <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped" style="width: 100%"></div>
+                                </div>
+                                <div id="swag-collapse1" class="collapse swag__element__collapse">
+                                    <div class="pt-5">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                                <div class="form-check form-switch">
+                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-1"
+                                        style="transform: scale(1.8);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swag__element d-flex gap-4 mb-5">
+                            <div class="swag__element__block w-100 rounded-3 p-3">
+                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div
+                                            class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                            <span class="fs-3 fw-semibold font-monospace">FACE</span>
+                                        </div>
+                                        <div class="swag__element__title fw-medium">Fake face photo detection</div>
+                                        <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
+                                            на подлинность</div>
+                                    </div>
+                                    <div class="inner-right hstack gap-4">
+                                        <span class="material-symbols-rounded text-warning">demography</span>
+                                        <span class="material-symbols-rounded text-info">check_box</span>
+                                        <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
+                                    </div>
+                                </div>
+                                <div id="progress" class="progress mt-3" role="progressbar"
+                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
+                                </div>
+                                <div id="swag-collapse2" class="collapse swag__element__collapse">
+                                    <div class="pt-5">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                                <div class="form-check form-switch">
+                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
+                                        style="transform: scale(1.8);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swag__element d-flex gap-4 mb-5">
+                            <div class="swag__element__block w-100 rounded-3 p-3">
+                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div
+                                            class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                            <span class="fs-3 fw-semibold font-monospace">DOC</span>
+                                        </div>
+                                        <div class="swag__element__title fw-medium">Fake document detection</div>
+                                        <div class="swag__element__description fw-light fst-italic">Проверка подлинности
+                                            удостоверения личности</div>
+                                    </div>
+                                    <div class="inner-right hstack gap-4">
+                                        <span class="material-symbols-rounded text-warning">demography</span>
+                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <a href="#swag-collapse3" data-bs-toggle="collapse" id="swag-arrow1"
+                                            class="material-symbols-rounded text-decoration-none text-light"
+                                            aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
+                                    </div>
+                                </div>
+                                <div id="progress1" class="progress mt-3" role="progressbar"
+                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped" style="width: 0"></div>
+                                </div>
+                                <div id="swag-collapse3" class="collapse swag__element__collapse">
+                                    <div class="pt-5">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                                <div class="form-check form-switch">
+                                    <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-3"
+                                        style="transform: scale(1.8);" disabled>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swag__element d-flex gap-4 mb-5">
+                            <div class="swag__element__block w-100 rounded-3 p-3">
+                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div
+                                            class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                            <span class="fs-3 fw-semibold font-monospace">DATA</span>
+                                        </div>
+                                        <div class="swag__element__title fw-medium">Data consistency</div>
+                                        <div class="swag__element__description fw-light fst-italic">OCR для извлечения
+                                            текстовых данных документа</div>
+                                    </div>
+                                    <div class="inner-right hstack gap-4">
+                                        <span class="material-symbols-rounded text-warning">demography</span>
+                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <a href="#swag-collapse4" data-bs-toggle="collapse" id="swag-arrow1"
+                                            class="material-symbols-rounded text-decoration-none text-light"
+                                            aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
+                                    </div>
+                                </div>
+                                <div id="progress1" class="progress mt-3" role="progressbar"
+                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                    aria-valuemax="100">
+                                    <div class="progress-bar progress-bar-striped" style="width: 0%"></div>
+                                </div>
+                                <div id="swag-collapse4" class="collapse swag__element__collapse">
+                                    <div class="pt-5">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                                <div class="form-check form-switch">
+                                    <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
+                                        style="transform: scale(1.8);" disabled>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="swag__body">
-                <div class="swag__inner">
-                    <div class="swag__element d-flex gap-4 mb-5">
-                        <div class="swag__element__block w-100 rounded-3 p-3">
-                            <div class="swag__element__inner d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">BIO</span>
-                                    </div>
-                                    <div class="swag__element__title fw-medium">Biometric check-up</div>
-                                    <div class="swag__element__description fw-light fst-italic">Проверка соответствию с лицом владельца</div>
-                                </div>
-                                <div class="inner-right hstack gap-4">
-                                    <span class="material-symbols-rounded text-info">check_box</span>
-                                    <a href="#swag-collapse1" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse1">keyboard_arrow_left</a>
-                                </div>
-                            </div>
-                            <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                <div class="progress-bar progress-bar-striped" style="width: 100%"></div>
-                            </div>
-                            <div id="swag-collapse1" class="collapse swag__element__collapse">
-                                <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swag__checker" style="margin-top: 2.5rem;">
-                            <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
-                                    style="transform: scale(1.8);">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swag__element d-flex gap-4 mb-5">
-                        <div class="swag__element__block w-100 rounded-3 p-3">
-                            <div class="swag__element__inner d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div
-                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">FACE</span>
-                                    </div>
-                                    <div class="swag__element__title fw-medium">Fake face photo detection</div>
-                                    <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
-                                        на подлинность</div>
-                                </div>
-                                <div class="inner-right hstack gap-4">
-                                    <span class="material-symbols-rounded text-info">check_box</span>
-                                    <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1"
-                                        class="material-symbols-rounded text-decoration-none text-light"
-                                        aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
-                                </div>
-                            </div>
-                            <div id="progress" class="progress mt-3" role="progressbar"
-                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                aria-valuemax="100">
-                                <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
-                            </div>
-                            <div id="swag-collapse2" class="collapse swag__element__collapse">
-                                <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swag__checker" style="margin-top: 2.5rem;">
-                            <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
-                                    style="transform: scale(1.8);">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swag__element d-flex gap-4 mb-5">
-                        <div class="swag__element__block w-100 rounded-3 p-3">
-                            <div class="swag__element__inner d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div
-                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">DOC</span>
-                                    </div>
-                                    <div class="swag__element__title fw-medium">Fake document detection</div>
-                                    <div class="swag__element__description fw-light fst-italic">Проверка подлинности
-                                        удостоверения личности</div>
-                                </div>
-                                <div class="inner-right hstack gap-4">
-                                    <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
-                                    <a href="#swag-collapse3" data-bs-toggle="collapse" id="swag-arrow1"
-                                        class="material-symbols-rounded text-decoration-none text-light"
-                                        aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
-                                </div>
-                            </div>
-                            <div id="progress1" class="progress mt-3" role="progressbar"
-                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                aria-valuemax="100">
-                                <div class="progress-bar progress-bar-striped" style="width: 0"></div>
-                            </div>
-                            <div id="swag-collapse3" class="collapse swag__element__collapse">
-                                <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swag__checker" style="margin-top: 2.5rem;">
-                            <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
-                                    style="transform: scale(1.8);" disabled>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="swag__element d-flex gap-4 mb-5">
-                        <div class="swag__element__block w-100 rounded-3 p-3">
-                            <div class="swag__element__inner d-flex justify-content-between align-items-center">
-                                <div class="d-flex align-items-center gap-4">
-                                    <div
-                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">DATA</span>
-                                    </div>
-                                    <div class="swag__element__title fw-medium">Data consistency</div>
-                                    <div class="swag__element__description fw-light fst-italic">OCR для извлечения
-                                        текстовых данных документа</div>
-                                </div>
-                                <div class="inner-right hstack gap-4">
-                                    <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
-                                    <a href="#swag-collapse4" data-bs-toggle="collapse" id="swag-arrow1"
-                                        class="material-symbols-rounded text-decoration-none text-light"
-                                        aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
-                                </div>
-                            </div>
-                            <div id="progress1" class="progress mt-3" role="progressbar"
-                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                aria-valuemax="100">
-                                <div class="progress-bar progress-bar-striped" style="width: 0%"></div>
-                            </div>
-                            <div id="swag-collapse4" class="collapse swag__element__collapse">
-                                <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
-                                </div>
-                            </div>
-                        </div>
-                        <div class="swag__checker" style="margin-top: 2.5rem;">
-                            <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
-                                    style="transform: scale(1.8);" disabled>
-                            </div>
-                        </div>
-                    </div>
+        </div>
+
+        <div class="result mt-5">
+            <div class="container">
+                <div class="result__body">
+
                 </div>
             </div>
         </div>
     </main>
 
+    <script src="/public/js/fakePhotoDetection.js"></script>
     <script>
+        $(document).ready(function () {
+            // Function to update detailed status
+            function updateDetailedStatus() {
+                $('.swag__element').each(function (index) {
+                    var checkedItems = [];
+                    var uncheckedItems = [];
+                    $('.form-check-input').each(function (i) {
+                        var itemStatus = $(this).prop('checked') ? 'checked' : 'unchecked';
+                        if (itemStatus === 'checked') {
+                            checkedItems.push("<li>Item " + (i + 1) + "</li>");
+                        } else {
+                            uncheckedItems.push("<li>Item " + (i + 1) + "</li>");
+                        }
+                    });
+                    var statusText = '';
+                    if (checkedItems.length > 0) {
+                        statusText += "<p>Checked:</p><ul>" + checkedItems.join("") + "</ul>";
+                    }
+                    if (uncheckedItems.length > 0) {
+                        statusText += "<p>Unchecked:</p><ul>" + uncheckedItems.join("") + "</ul>";
+                    }
+                    $('.result__body').html(statusText);
+                });
+            }
+
+            // Initial detailed status update
+            updateDetailedStatus();
+
+            // Event handler for checkbox change
+            $('.form-check-input').change(function () {
+                updateDetailedStatus();
+            });
+        });
+        // Bootstrap Popover
+        const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
+        const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
+
+
         $(() => {
+            $('.form-valid').remove();
+            placeImg();
+
             $('.swag__element__inner .inner-right a').click(function () {
                 if ($(this).hasClass('collapsed')) {
                     $(this).removeClass('collapsed');
@@ -231,7 +295,37 @@
                     $(this).addClass('collapsed');
                 }
             })
-        })
+
+            // $('.form-check').click(function() {
+            //     checkImg();
+            // })
+
+            // if (checkImg() == false) {
+            //     $('.form-check input').prop('disabled', true);
+            // } else {
+            //     $('.form-check input').prop('disabled', false);
+            // }
+        })  
+
+        function checkImg() {
+            $('.form-valid').remove();
+            let isValid = true;
+            const fileInput = $('.imgput__element input[type="file"]');
+            console.log(fileInput)
+            const validElem = '<div class="form-valid text-danger mt-2">Загрузите фото!</div>'
+
+            fileInput.each(function(index, element) {
+                const $element = $(element);
+
+                console.log(element.files.length)
+                if (element.files.length === 0) {
+                    $element.parent().after(validElem);
+                    isValid = false;
+                }
+            });
+
+            return isValid;
+        }
 
         function addImage(fieldSelector) {
             const imgputElement = $(fieldSelector).closest('.imgput__element');
@@ -239,7 +333,13 @@
             const fileNameSpan = imgputElement.find('#file-name');
 
             fileInput.on('change', function() {
-                fileNameSpan.text(this.files[0].name);
+                $('.form-valid').remove();
+                fileNameSpan.text(this.files[0].name)
+                if (imgputElement.prop('id') == 'imgput-element-1') {
+                    localStorage.setItem('faceName', this.files[0].name);
+                } else {
+                    localStorage.setItem('docName', this.files[0].name);
+                }
             })
         }
 
@@ -248,9 +348,52 @@
             const fileInput = imgputElement.find('input[type="file"]');
             const fileNameSpan = imgputElement.find('#file-name');
 
+            if (imgputElement.prop('id') == 'imgput-element-1') {
+                localStorage.removeItem('faceName');
+            } else {
+                localStorage.removeItem('docName');
+            }
+
             fileNameSpan.text('');
             fileInput.val('');
         }
+
+        function placeImg() {
+            const imgputElement = $('.imgput__element');
+            
+
+            imgputElement.each(function(index, element) {
+                const $element = $(element);
+
+                const fileInput = $element.find('input[type="file"]');
+                const fileNameSpan = $element.find('#file-name');
+
+                const elementId = $element.attr('id');
+
+                if (elementId === 'imgput-element-1') {
+                    fileNameSpan.text(localStorage.getItem('faceName'));
+                } else {
+                    fileNameSpan.text(localStorage.getItem('docName'));
+                }
+                
+                fileInput.on('change', function() {
+                    if (elementId === 'imgput-element-1') {
+                        fileNameSpan.text(localStorage.getItem('faceName'));
+                    } else {
+                        fileNameSpan.text(localStorage.getItem('docName'));
+                    }
+                });
+            });
+
+        }
+
+        function getImgInput(fieldSelector) {
+            const inputElement = $(fieldSelector);
+            
+            return inputElement[0].files[0];
+        }
+
+       
 
     </script>
 </body>

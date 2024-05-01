@@ -18,14 +18,18 @@ body {
     font-family: 'Roboto', sans-serif !important;
     font-weight: 400;
 }
-    
-/* Custom Checkbox */
+
+/* Custom */
 .custom-checkbox:checked {
     background-color: #388fb2 !important;
     border-color: #388fb2 !important;
 }
 
-/* Custom BG */
+.custom-disabled-checkbox {
+    background-color: rgb(221, 155, 155) !important;
+    border-color: rgb(221, 155, 155) !important;
+}
+
 .bg-red {
     background-color: rgba(234, 67, 67, 0.875);
 }
