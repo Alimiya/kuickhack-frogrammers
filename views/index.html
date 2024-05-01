@@ -2,6 +2,7 @@
 <html>
 <head>
     <link rel="stylesheet" href="/public/css/style.css">
+
     <title>Frogrammers | KuickHack</title>
 </head>
 
@@ -276,11 +277,13 @@
             </div>
         </div>
     </main>
-
-    <script src="/public/js/faceMatchDetection.js"></script>
     
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+    <script src="/public/js/faceMatchDetection.js"></script>
+    <script src="/public/js/fakeFaceDetector.js"></script>
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
+
 
     <script>
         var checkedItemsId = [];
@@ -317,7 +320,7 @@
                 faceMatchDetectionStart();
                 // Biometric check-up method
             } else if ($("#checked-element-swag-face").length) {
-                // Fake face photo detection method
+                fakeFaceDetectorStart();
             } else if ($("checked-element-swag-doc").length) {
                 // Fake document detection method
             } else if ($("#checked-element-swag-data").length) {
