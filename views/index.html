@@ -18,13 +18,13 @@
             <div class="container">
                 <div class="imgput__body">
                     <p>Для проверки документов вы должны загрузить <span class="fst-italic fw-semibold">документ удостоверения личности <span class="text-warning">(обязательно)</span></span> и <span class="fst-italic fw-semibold">фотографию лица</span>.</p>
-                    <div class="imgput__inner p-4 border rounded-3" style="width: 96.5%;">
+                    <div class="imgput__inner p-4 border rounded-3" style="width: 95%;">
                         <div class="imgput__element mb-5 hstack justify-content-between" id="imgput-element-2">
                             <div>
                                 <div class="hstack gap-4">
                                     <div class="fw-bold hstack gap-2">
                                         <span class="material-symbols-rounded fs-2">demography</span>Удостоверение личности
-                                        <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности"><span class="material-symbols-rounded text-warning">error</span></a>
+                                        <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности. Поэтому он является обязательным!"><span class="material-symbols-rounded text-warning">error</span></a>
                                     </div>
                                     <div>
                                         <label for="file-img-2">
@@ -37,7 +37,7 @@
                             <div class="hstack gap-3">
                                 <div class="border-bottom hstack gap-2" style="width: 400px;">
                                     <span class="material-symbols-rounded">draft</span>
-                                    <span id="file-name"></span>
+                                    <span id="file-name">Загрузите файл</span>
                                 </div>
                                 <div class="bg-red p-1 rounded-1" style="cursor: pointer;" onclick="deleteImage(this)">
                                     <span class="material-symbols-rounded">delete</span>
@@ -61,7 +61,7 @@
                             <div class="hstack gap-3">
                                 <div class="border-bottom hstack gap-2" style="width: 400px;">
                                     <span class="material-symbols-rounded">draft</span>
-                                    <span id="file-name"></span>
+                                    <span id="file-name">Загрузите файл</span>
                                 </div>
                                 <div class="bg-red p-1 rounded-1" style="cursor: pointer;" onclick="deleteImage(this)">
                                     <span class="material-symbols-rounded">delete</span>
@@ -96,16 +96,16 @@
                                         <a href="#swag-collapse1" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse1">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                                <!-- <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
                                     <div class="progress-bar progress-bar-striped" style="width: 100%"></div>
-                                </div>
+                                </div> -->
                                 <div id="swag-collapse1" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
                                     </div>
                                 </div>
                             </div>
-                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                            <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-1"
                                         style="transform: scale(1.8);">
@@ -130,11 +130,11 @@
                                         <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <div id="progress" class="progress mt-3" role="progressbar"
+                                <!-- <div id="progress" class="progress mt-3" role="progressbar"
                                     aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
                                     aria-valuemax="100">
                                     <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
-                                </div>
+                                </div> -->
                                 <div id="swag-collapse2" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -143,7 +143,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                            <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
                                         style="transform: scale(1.8);">
@@ -170,11 +170,11 @@
                                             aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <div id="progress1" class="progress mt-3" role="progressbar"
+                                <!-- <div id="progress1" class="progress mt-3" role="progressbar"
                                     aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
                                     aria-valuemax="100">
                                     <div class="progress-bar progress-bar-striped" style="width: 0"></div>
-                                </div>
+                                </div> -->
                                 <div id="swag-collapse3" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -183,7 +183,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                            <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-3"
                                         style="transform: scale(1.8);" disabled>
@@ -210,11 +210,11 @@
                                             aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <div id="progress1" class="progress mt-3" role="progressbar"
+                                <!-- <div id="progress1" class="progress mt-3" role="progressbar"
                                     aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
                                     aria-valuemax="100">
                                     <div class="progress-bar progress-bar-striped" style="width: 0%"></div>
-                                </div>
+                                </div> -->
                                 <div id="swag-collapse4" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -223,7 +223,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="swag__checker" style="margin-top: 2.5rem;">
+                            <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
                                         style="transform: scale(1.8);" disabled>
@@ -237,8 +237,23 @@
 
         <div class="submit mt-5">
             <div class="container">
+                <div class="submit__header mb-4">
+                    <h5>Выбранные методы:</h5>
+                </div>
                 <div class="submit__body">
-                    <button class="btn btn-primary">Проверить</button>
+                    <div id="submit-checked" class="submit__checked" style="width: 95%;">
+                        <div class="checked__element d-flex align-items-center justify-content-between mb-4">
+                            <div class="hstack gap-5">
+                                <div class="checked__title">Biometric check-up</div>
+                                <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 970px; margin-bottom: 12px;">
+                                    <div class="progress-bar progress-bar-striped bg-success" style="width: 0%"></div>
+                                </div>
+                            </div>
+                            <div class="submit__percent">0%</div>
+                        </div>
+                        
+                    </div>
+                    <button class="btn btn-primary" style="display: none;">Проверить</button>
                 </div>
             </div>
         </div>
@@ -254,8 +269,11 @@
 
     <script src="/public/js/fakePhotoDetection.js"></script>
     <script>
-        var checkedItems = [];
-        var uncheckedItems = [];
+        var checkedItemsId = [];
+        var uncheckedItemsId = [];
+
+        var checkedItemsText = [];
+        var uncheckedItemsText = [];
 
         // Bootstrap Popover
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
@@ -263,6 +281,8 @@
 
 
         $(() => {
+
+
             $('.form-valid').remove();
             placeImg();
 
@@ -274,21 +294,31 @@
                 }
             })
 
-            // Function to update detailed status
             function updateDetailedStatus() {
+                checkedItemsId = [];
+                uncheckedItemsId = [];
+                checkedItemsText = [];
+                uncheckedItemsText = [];
+                
                 $('.swag__element').each(function (index) {
-                    checkedItems = [];
-                    uncheckedItems = [];
-                    $('.form-check-input').each(function (i) {
-                        var itemStatus = $(this).prop('checked') ? 'checked' : 'unchecked';
-                        if (itemStatus === 'checked') {
-                            checkedItems.push($(this).closest('.swag__element').prop('id'));
-                        } else {
-                            uncheckedItems.push($(this).closest('.swag__element').prop('id'));
-                        }
-                    });
+                    var $swagElement = $(this);
+                    var $swagTitle = $(this).find('.swag__element__title');
+                    var $checkbox = $swagElement.find('.form-check-input');
+                    
+                    var itemStatus = $checkbox.prop('checked') ? 'checked' : 'unchecked';
+                    
+                    if (itemStatus === 'checked') {
+                        checkedItemsText.push($swagTitle.text());
+                        checkedItemsId.push($swagElement.prop('id'));
+                    } else {
+                        uncheckedItemsText.push($swagTitle.text());
+                        uncheckedItemsId.push($swagElement.prop('id'));
+                    }
                 });
+                displaySubmitChecked();
             }
+
+
 
             // Initial detailed status update
             updateDetailedStatus();
@@ -308,11 +338,28 @@
             // } else {
             //     $('.form-check input').prop('disabled', false);
             // }
-
-            console.log(getImgInput('img'));
-            console.log(getImgInput('doc'));
-            
         })  
+
+    
+
+        
+        
+        function displaySubmitChecked() {
+            $('#submit-checked').html('');
+            let submitHTML = '';
+            for (let i = 0; i < checkedItemsId.length; i++) {
+                submitHTML += `<div class="checked__element d-flex align-items-center justify-content-between mb-4">
+                    <div class="hstack gap-5">
+                        <div class="checked__title">${checkedItemsId[i] == 'swag-bio' ? 'Biometric check-up' : checkedItemsId[i] == 'swag-face' ? 'Fake face photo detection' : checkedItemsId[i] == 'swag-doc' ? 'Fake document detection' : 'Data consistency'}</div>
+                        <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 970px; margin-bottom: 12px;">
+                            <div class="progress-bar progress-bar-striped bg-success" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="submit__percent">0%</div>
+                </div>`
+            }
+            $('#submit-checked').append(submitHTML);
+        }
 
         function checkImg() {
             $('.form-valid').remove();
@@ -361,7 +408,7 @@
                 localStorage.removeItem('docName');
             }
 
-            fileNameSpan.text('');
+            fileNameSpan.text('Загрузите файл');
             fileInput.val('');
         }
 
@@ -378,9 +425,17 @@
                 const elementId = $element.attr('id');
 
                 if (elementId === 'imgput-element-1') {
-                    fileNameSpan.text(localStorage.getItem('faceName'));
+                    if (localStorage.getItem('faceName') !== null) {
+                        fileNameSpan.text(localStorage.getItem('faceName'));
+                    } else {
+                        fileNameSpan.text('Загрузите файл');
+                    }
                 } else {
-                    fileNameSpan.text(localStorage.getItem('docName'));
+                    if (localStorage.getItem('docName') !== null) {
+                        fileNameSpan.text(localStorage.getItem('docName'));
+                    } else {
+                        fileNameSpan.text('Загрузите файл');
+                    }
                 }
                 
                 fileInput.on('change', function() {
