@@ -79,7 +79,7 @@
                 </div>
                 <div class="swag__body">
                     <div class="swag__inner">
-                        <div class="swag__element d-flex gap-4 mb-5">
+                        <div class="swag__element d-flex gap-4 mb-5" id="swag-bio">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center gap-4">
@@ -112,7 +112,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swag__element d-flex gap-4 mb-5">
+                        <div class="swag__element d-flex gap-4 mb-5" id="swag-face">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center gap-4">
@@ -150,7 +150,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swag__element d-flex gap-4 mb-5">
+                        <div class="swag__element d-flex gap-4 mb-5" id="swag-doc">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center gap-4">
@@ -190,7 +190,7 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swag__element d-flex gap-4 mb-5">
+                        <div class="swag__element d-flex gap-4 mb-5" id="swag-data">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                     <div class="d-flex align-items-center gap-4">
@@ -235,6 +235,14 @@
             </div>
         </div>
 
+        <div class="submit mt-5">
+            <div class="container">
+                <div class="submit__body">
+                    <button class="btn btn-primary">Проверить</button>
+                </div>
+            </div>
+        </div>
+
         <div class="result mt-5">
             <div class="container">
                 <div class="result__body">
@@ -246,39 +254,9 @@
 
     <script src="/public/js/fakePhotoDetection.js"></script>
     <script>
-        $(document).ready(function () {
-            // Function to update detailed status
-            function updateDetailedStatus() {
-                $('.swag__element').each(function (index) {
-                    var checkedItems = [];
-                    var uncheckedItems = [];
-                    $('.form-check-input').each(function (i) {
-                        var itemStatus = $(this).prop('checked') ? 'checked' : 'unchecked';
-                        if (itemStatus === 'checked') {
-                            checkedItems.push("<li>Item " + (i + 1) + "</li>");
-                        } else {
-                            uncheckedItems.push("<li>Item " + (i + 1) + "</li>");
-                        }
-                    });
-                    var statusText = '';
-                    if (checkedItems.length > 0) {
-                        statusText += "<p>Checked:</p><ul>" + checkedItems.join("") + "</ul>";
-                    }
-                    if (uncheckedItems.length > 0) {
-                        statusText += "<p>Unchecked:</p><ul>" + uncheckedItems.join("") + "</ul>";
-                    }
-                    $('.result__body').html(statusText);
-                });
-            }
+        var checkedItems = [];
+        var uncheckedItems = [];
 
-            // Initial detailed status update
-            updateDetailedStatus();
-
-            // Event handler for checkbox change
-            $('.form-check-input').change(function () {
-                updateDetailedStatus();
-            });
-        });
         // Bootstrap Popover
         const popoverTriggerList = document.querySelectorAll('[data-bs-toggle="popover"]');
         const popoverList = [...popoverTriggerList].map(popoverTriggerEl => new bootstrap.Popover(popoverTriggerEl));
@@ -296,6 +274,31 @@
                 }
             })
 
+            // Function to update detailed status
+            function updateDetailedStatus() {
+                $('.swag__element').each(function (index) {
+                    checkedItems = [];
+                    uncheckedItems = [];
+                    $('.form-check-input').each(function (i) {
+                        var itemStatus = $(this).prop('checked') ? 'checked' : 'unchecked';
+                        if (itemStatus === 'checked') {
+                            checkedItems.push($(this).closest('.swag__element').prop('id'));
+                        } else {
+                            uncheckedItems.push($(this).closest('.swag__element').prop('id'));
+                        }
+                    });
+                });
+            }
+
+            // Initial detailed status update
+            updateDetailedStatus();
+
+            // Event handler for checkbox change
+            $('.form-check-input').change(function () {
+                updateDetailedStatus();
+            });
+
+            
             // $('.form-check').click(function() {
             //     checkImg();
             // })
@@ -305,6 +308,10 @@
             // } else {
             //     $('.form-check input').prop('disabled', false);
             // }
+
+            console.log(getImgInput('img'));
+            console.log(getImgInput('doc'));
+            
         })  
 
         function checkImg() {
@@ -384,17 +391,15 @@
                     }
                 });
             });
-
         }
 
         function getImgInput(fieldSelector) {
-            const inputElement = $(fieldSelector);
-            
-            return inputElement[0].files[0];
+            if (fieldSelector == 'img') {
+                return $('#file-img-2')[0].files[0];
+            } else if (fieldSelector == 'doc') {
+                return $('#file-img-1')[0].files[0];
+            }
         }
-
-       
-
     </script>
 </body>
 
