@@ -277,7 +277,8 @@
         </div>
     </main>
 
-    <script src="/public/js/fakePhotoDetection.js"></script>
+    <script src="/public/js/faceMatchDetection.js"></script>
+    
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
 
@@ -313,7 +314,7 @@
 
         function submitMethods() {
             if ($("#checked-element-swag-bio").length) {
-                fakePhotoDetectionStart();
+                faceMatchDetectionStart();
                 // Biometric check-up method
             } else if ($("#checked-element-swag-face").length) {
                 // Fake face photo detection method
@@ -480,6 +481,7 @@
                 return $('#file-img-2')[0].files[0];
             }
         }
+
     
     </script>
 </body>
