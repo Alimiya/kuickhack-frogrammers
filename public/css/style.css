@@ -79,3 +79,35 @@
 .swag__checker {
     margin-top: 1.8rem;
 }
+
+#checked-element-swag-bio .checked__title{
+    color: var(--swag-green)
+}
+
+#checked-element-swag-bio .progress-bar {
+    background-color: var(--swag-green);
+}
+
+#checked-element-swag-face .progress-bar {
+    background-color: var(--swag-orange);
+}
+
+#checked-element-swag-face .checked__title{
+    color: var(--swag-orange)
+}
+
+#checked-element-swag-doc .progress-bar {
+    background-color: var(--swag-violet);
+}
+
+#checked-element-swag-doc .checked__title{
+    color: var(--swag-violet)
+}
+
+#checked-element-swag-data .progress-bar {
+    background-color: var(--swag-pink);
+}
+
+#checked-element-swag-data .checked__title{
+    color: var(--swag-pink)
+}
