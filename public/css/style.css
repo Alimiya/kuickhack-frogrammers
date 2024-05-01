@@ -1,0 +1,64 @@
+/* Swag */  
+.swag__body {
+    margin-top: 5rem;
+}
+
+.swag__element:nth-child(1) .swag__element__block {
+    border: 1px solid var(--swag-green);
+}
+
+.swag__element:nth-child(1) .swag__element__shortTitle {
+    width: 100px;
+    background-color: var(--swag-green);
+}
+
+.swag__element:nth-child(1) .progress-bar {
+    background-color: var(--swag-green);
+}
+
+.swag__element:nth-child(2) .swag__element__block {
+    border: 1px solid var(--swag-orange);
+}
+
+.swag__element:nth-child(2) .swag__element__shortTitle {
+    width: 100px;
+    background-color: var(--swag-orange);
+}
+
+.swag__element:nth-child(2) .progress-bar {
+    background-color: var(--swag-orange);
+}
+
+.swag__element:nth-child(3) .swag__element__block {
+    border: 1px solid var(--swag-violet);
+}
+
+.swag__element:nth-child(3) .swag__element__shortTitle {
+    width: 100px;
+    background-color: var(--swag-violet);
+}
+
+.swag__element:nth-child(3) .progress-bar {
+    background-color: var(--swag-violet);
+}
+
+.swag__element:nth-child(4) .swag__element__block {
+    border: 1px solid var(--swag-pink);
+}
+
+.swag__element:nth-child(4) .swag__element__shortTitle {
+    width: 100px;
+    background-color: var(--swag-pink);
+}
+
+.swag__element:nth-child(4) .progress-bar {
+    background-color: var(--swag-pink);
+}
+
+.swag__element__title {
+    font-size: 1.15rem;
+}
+
+.swag__element__inner .inner-right span:last-child{
+    font-size: 3rem;
+}
