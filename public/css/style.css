@@ -111,3 +111,16 @@
 #checked-element-swag-data .checked__title{
     color: var(--swag-pink)
 }
+
+.result__element {
+    position: relative;
+}
+
+.result-true,
+.result-false {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    right: 100px;
+    z-index: 1000;
+}

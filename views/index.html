@@ -2,7 +2,6 @@
 <html>
 <head>
     <link rel="stylesheet" href="/public/css/style.css">
-
     <title>Frogrammers | KuickHack</title>
 </head>
 
@@ -237,14 +236,14 @@
             </div>
         </div>
 
-        <div class="submit mt-5">
+        <div class="submit my-5">
             <div class="container">
                 <div class="submit__header mb-4">
                     <h5>Выбранные методы:</h5>
                 </div>
                 <div class="submit__body" style="width: 95%;">
                     <div id="submit-checked" class="submit__checked mb-5">
-                        <div class="checked__element d-flex justify-content-between align-items-center mb-4">
+                        <!-- <div class="checked__element d-flex justify-content-between align-items-center mb-4">
                             <div>
                                 <div class="checked__title mb-3">Biometric check-up</div>
                                 <div id="progress" class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1000px; margin-top: 6px;">
@@ -252,7 +251,7 @@
                                 </div>
                             </div>  
                             <div class="submit__percent">0%</div>
-                        </div>
+                        </div> -->
                         
                     </div>
                     <!-- <div class="submit__empty p-3">
@@ -269,21 +268,23 @@
             </div>
         </div>
 
-        <div class="result mt-5">
+        <div class="result mt-2 mb-5" style="display: none;" id="result">
             <div class="container">
-                <div class="result__body">
-
+                <div class="result__header mb-4">
+                    <h5>Результат:</h5>
+                </div>
+                <div class="result__body bg-dark p-4">
+                    <div class="result__inner" id="result-inner">
+                    
+                    </div>
                 </div>
             </div>
         </div>
     </main>
-    
-    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs"></script>
+
     <script src="/public/js/faceMatchDetection.js"></script>
-    <script src="/public/js/fakeFaceDetector.js"></script>
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
-
 
     <script>
         var checkedItemsId = [];
@@ -315,20 +316,21 @@
             $('#file-img-1, #file-img-2').on('change', checkImages);
         })  
 
-        function submitMethods() {
-            if ($("#checked-element-swag-bio").length) {
-                faceMatchDetectionStart();
+        async function submitMethods() {
+            $("#result").show();
+            displayResult();
+            if ($("#checked-element-swag-bio").length > 0) {
+                await faceMatchDetectionStart();
                 // Biometric check-up method
-            } else if ($("#checked-element-swag-face").length) {
-                fakeFaceDetectorStart();
-            } else if ($("checked-element-swag-doc").length) {
+            } else if ($("#checked-element-swag-face").length > 0) {
+                // Fake face photo detection method
+            } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
-            } else if ($("#checked-element-swag-data").length) {
+            } else if ($("#checked-element-swag-data").length > 0) {
                 // Data consistency method
             }
         }
 
-    
         function checkImages() {
             if (getImgInput('img') && getImgInput('doc')) {
                 $('#swag-checkbox-1').prop('disabled', false);
@@ -338,10 +340,13 @@
             }
 
             if (getImgInput('doc')) {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
+                $('#swag-checkbox-2').prop('disabled', false);
             } else {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
+                $('#swag-checkbox-2').prop('disabled', true);
+                $('#swag-checkbox-2').prop('checked', false);
             }
         }
 
@@ -353,6 +358,22 @@
                     $(this).addClass('collapsed');
                 }
             })
+        }
+
+        function displayResult() {
+            $("#result-inner").html('');
+            let resultHTML = '';
+            for (let i = 0; i < checkedItemsId.length; i++) {
+                resultHTML += `<div class="result__element" id="result-${checkedItemsId[i]}">
+                            <div class="result__element__title fw-semibold fs-5">${checkedItemsId[i] == 'swag-bio' ? 'Biometric check-up' : checkedItemsId[i] == 'swag-face' ? 'Fake face photo detection' : checkedItemsId[i] == 'swag-doc' ? 'Fake document detection' : 'Data consistency'}</div>
+                            
+                            <div class="result__element__block">
+                                
+                            </div>
+                            <hr/>
+                        </div>`
+            }
+            $("#result-inner").append(resultHTML);
         }
         
         function displaySubmitChecked() {
@@ -369,14 +390,14 @@
                 $('#submit-btn').toggleClass('disabled', true);
             } else {
                 for (let i = 0; i < checkedItemsId.length; i++) {
-                    submitHTML += `<div class="checked__element d-flex justify-content-between align-items-center mb-4" id="checked-element-${checkedItemsId[i]}">
+                    submitHTML += `<div class="checked__element d-flex justify-content-between align-items-end mb-4" id="checked-element-${checkedItemsId[i]}">
                             <div>
                                 <div class="checked__title fw-semibold">${checkedItemsId[i] == 'swag-bio' ? 'Biometric check-up' : checkedItemsId[i] == 'swag-face' ? 'Fake face photo detection' : checkedItemsId[i] == 'swag-doc' ? 'Fake document detection' : 'Data consistency'}</div>
-                                <div id="progress" class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1000px; margin-top: 6px;">
-                                    <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
+                                <div id="progress" class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1100px; margin-top: 6px;">
+                                    <div class="progress-bar progress-bar-striped" style="width: 0%" id="progress-${checkedItemsId[i]}"></div>
                                 </div>
                             </div>  
-                            <div class="submit__percent">0%</div>
+                            <div class="submit__percent" id="percent-${checkedItemsId[i]}">0%</div>
                         </div>`
                 }
                 $('#submit-btn').toggleClass('disabled', false);
@@ -439,6 +460,7 @@
             fileInput.val('');
 
             checkImages();
+            updateDetailedStatus();
         }
 
         function placeImg() {
