@@ -16,11 +16,11 @@ async function compareFaces(img1, img2) {
         console.log(bestMatch.toString());
     }
    
-async function main() {
+async function getResult() {
         await loadModels();
         const img1 = getImgInput('img');
         const img2 = getImgInput('doc');
         await compareFaces(img1, img2);
     }
 
-main();
+getResult();
