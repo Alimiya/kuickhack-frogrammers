@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-
+<html>
 <head>
     <link rel="stylesheet" href="/public/css/style.css">
     <title>Frogrammers | KuickHack</title>
@@ -7,9 +7,65 @@
 
 <body>
     <main>
-        <div class="swag container mt-5">
+        <div class="intro my-5">
+            <div class="container">
+                <div class="intro__body">
+                    <h2 class="swag__title">Система верификации удостоверения личности гражданина РК</h2>
+                </div>
+            </div>
+        </div>
+        <div class="imgput">
+            <div class="container">
+                <div class="imgput__body">
+                    <p>Для проверки документов вы должны загрузить:</p>
+                    <div class="imgput__inner p-4 border rounded-3" style="width: 96.5%;">
+                        <div class="imgput__element hstack justify-content-between mb-5">
+                            <div class="hstack gap-4">
+                                <div class="fw-bold">Фотография вашего лица</div>
+                                <div>
+                                    <label for="file-img-1">
+                                        <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
+                                    </label>
+                                    <input style="display: none;" type="file" class="form-control" id="file-img-1" accept="image/png, image/jpeg, image/jpg" />
+                                </div>
+                            </div>
+                            <div class="hstack gap-3">
+                                <div class="border-bottom hstack gap-3" style="width: 400px;">
+                                    <span class="material-symbols-rounded">draft</span>
+                                    <span id="file-name"></span>
+                                </div>
+                                <div class="bg-red p-1 rounded-1" style="cursor: pointer;" onclick="deleteImage(this)">
+                                    <span class="material-symbols-rounded">delete</span>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="imgput__element hstack justify-content-between">
+                            <div class="hstack gap-4">
+                                <div class="fw-bold">Фотография или скан вашего удостоверения личности</div>
+                                <div>
+                                    <label for="file-img-2">
+                                        <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
+                                    </label>
+                                    <input style="display: none;" type="file" class="form-control" id="file-img-2" accept="image/png, image/jpeg, image/jpg">
+                                </div>
+                            </div>
+                            <div class="hstack gap-3">
+                                <div class="border-bottom hstack gap-3" style="width: 400px;">
+                                    <span class="material-symbols-rounded">draft</span>
+                                    <span id="file-name"></span>
+                                </div>
+                                <div class="bg-red p-1 rounded-1" style="cursor: pointer;" onclick="deleteImage(this)">
+                                    <span class="material-symbols-rounded">delete</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="swag container">
             <div class="swag__header">
-                <h2 class="swag__title">Система верификации удостоверения личности гражданина РК</h2>
+
             </div>
             <div class="swag__body">
                 <div class="swag__inner">
@@ -18,7 +74,7 @@
                             <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center gap-4">
                                     <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">BIO</soan>
+                                        <span class="fs-3 fw-semibold font-monospace">BIO</span>
                                     </div>
                                     <div class="swag__element__title fw-medium">Biometric check-up</div>
                                     <div class="swag__element__description fw-light fst-italic">Проверка соответствию с лицом владельца</div>
@@ -39,7 +95,8 @@
                         </div>
                         <div class="swag__checker" style="margin-top: 2.5rem;">
                             <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox" style="transform: scale(1.8);">
+                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
+                                    style="transform: scale(1.8);">
                             </div>
                         </div>
                     </div>
@@ -47,29 +104,38 @@
                         <div class="swag__element__block w-100 rounded-3 p-3">
                             <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center gap-4">
-                                    <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">FACE</soan>
+                                    <div
+                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                        <span class="fs-3 fw-semibold font-monospace">FACE</span>
                                     </div>
                                     <div class="swag__element__title fw-medium">Fake face photo detection</div>
-                                    <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица на подлинность</div>
+                                    <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
+                                        на подлинность</div>
                                 </div>
                                 <div class="inner-right hstack gap-4">
                                     <span class="material-symbols-rounded text-info">check_box</span>
-                                    <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
+                                    <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1"
+                                        class="material-symbols-rounded text-decoration-none text-light"
+                                        aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
                                 </div>
                             </div>
-                            <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <div id="progress" class="progress mt-3" role="progressbar"
+                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                aria-valuemax="100">
                                 <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
                             </div>
                             <div id="swag-collapse2" class="collapse swag__element__collapse">
                                 <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
                                 </div>
                             </div>
                         </div>
                         <div class="swag__checker" style="margin-top: 2.5rem;">
                             <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox" style="transform: scale(1.8);">
+                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
+                                    style="transform: scale(1.8);">
                             </div>
                         </div>
                     </div>
@@ -77,29 +143,38 @@
                         <div class="swag__element__block w-100 rounded-3 p-3">
                             <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center gap-4">
-                                    <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">DOC</soan>
+                                    <div
+                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                        <span class="fs-3 fw-semibold font-monospace">DOC</span>
                                     </div>
                                     <div class="swag__element__title fw-medium">Fake document detection</div>
-                                    <div class="swag__element__description fw-light fst-italic">Проверка подлинности удостоверения личности</div>
+                                    <div class="swag__element__description fw-light fst-italic">Проверка подлинности
+                                        удостоверения личности</div>
                                 </div>
                                 <div class="inner-right hstack gap-4">
                                     <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
-                                    <a href="#swag-collapse3" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
+                                    <a href="#swag-collapse3" data-bs-toggle="collapse" id="swag-arrow1"
+                                        class="material-symbols-rounded text-decoration-none text-light"
+                                        aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
                                 </div>
                             </div>
-                            <div id="progress1" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <div id="progress1" class="progress mt-3" role="progressbar"
+                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                aria-valuemax="100">
                                 <div class="progress-bar progress-bar-striped" style="width: 0"></div>
                             </div>
                             <div id="swag-collapse3" class="collapse swag__element__collapse">
                                 <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
                                 </div>
                             </div>
                         </div>
                         <div class="swag__checker" style="margin-top: 2.5rem;">
                             <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox" style="transform: scale(1.8);" disabled>
+                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
+                                    style="transform: scale(1.8);" disabled>
                             </div>
                         </div>
                     </div>
@@ -107,29 +182,38 @@
                         <div class="swag__element__block w-100 rounded-3 p-3">
                             <div class="swag__element__inner d-flex justify-content-between align-items-center">
                                 <div class="d-flex align-items-center gap-4">
-                                    <div class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                        <span class="fs-3 fw-semibold font-monospace">DATA</soan>
+                                    <div
+                                        class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                        <span class="fs-3 fw-semibold font-monospace">DATA</span>
                                     </div>
                                     <div class="swag__element__title fw-medium">Data consistency</div>
-                                    <div class="swag__element__description fw-light fst-italic">OCR для извлечения текстовых данных документа</div>
+                                    <div class="swag__element__description fw-light fst-italic">OCR для извлечения
+                                        текстовых данных документа</div>
                                 </div>
                                 <div class="inner-right hstack gap-4">
                                     <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
-                                    <a href="#swag-collapse4" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
+                                    <a href="#swag-collapse4" data-bs-toggle="collapse" id="swag-arrow1"
+                                        class="material-symbols-rounded text-decoration-none text-light"
+                                        aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
                                 </div>
                             </div>
-                            <div id="progress1" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
+                            <div id="progress1" class="progress mt-3" role="progressbar"
+                                aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
+                                aria-valuemax="100">
                                 <div class="progress-bar progress-bar-striped" style="width: 0%"></div>
                             </div>
                             <div id="swag-collapse4" class="collapse swag__element__collapse">
                                 <div class="pt-5">
-                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                    quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                    deserunt molestias perferendis molestiae earum corporis beatae quasi.
                                 </div>
                             </div>
                         </div>
                         <div class="swag__checker" style="margin-top: 2.5rem;">
                             <div class="form-check">
-                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox" style="transform: scale(1.8);" disabled>
+                                <input class="custom-checkbox form-check-input" type="checkbox" id="swag-checkbox"
+                                    style="transform: scale(1.8);" disabled>
                             </div>
                         </div>
                     </div>
@@ -140,7 +224,7 @@
 
     <script>
         $(() => {
-            $('.swag__element__inner .inner-right a').click(function() {
+            $('.swag__element__inner .inner-right a').click(function () {
                 if ($(this).hasClass('collapsed')) {
                     $(this).removeClass('collapsed');
                 } else {
@@ -148,6 +232,26 @@
                 }
             })
         })
+
+        function addImage(fieldSelector) {
+            const imgputElement = $(fieldSelector).closest('.imgput__element');
+            const fileInput = imgputElement.find('input[type="file"]');
+            const fileNameSpan = imgputElement.find('#file-name');
+
+            fileInput.on('change', function() {
+                fileNameSpan.text(this.files[0].name);
+            })
+        }
+
+        function deleteImage(fieldSelector) {
+            const imgputElement = $(fieldSelector).closest('.imgput__element');
+            const fileInput = imgputElement.find('input[type="file"]');
+            const fileNameSpan = imgputElement.find('#file-name');
+
+            fileNameSpan.text('');
+            fileInput.val('');
+        }
+
     </script>
 </body>
 
