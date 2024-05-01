@@ -59,6 +59,11 @@
     font-size: 1.15rem;
 }
 
-.swag__element__inner .inner-right span:last-child{
-    font-size: 3rem;
+.swag__element__inner .inner-right a{
+    font-size: 2.5rem;
+    transition: ease .3s transform;
+}
+
+.collapsed{
+    transform: rotate(-90deg);
 }
