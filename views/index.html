@@ -268,7 +268,7 @@
             </div>
         </div>
 
-        <div class="result mt-2 mb-5" style="display: none;" id="result">
+        <div class="result mb-5" style="display: none;" id="result">
             <div class="container">
                 <div class="result__header mb-4">
                     <h5>Результат:</h5>
@@ -365,8 +365,7 @@
             let resultHTML = '';
             for (let i = 0; i < checkedItemsId.length; i++) {
                 resultHTML += `<div class="result__element" id="result-${checkedItemsId[i]}">
-                            <div class="result__element__title fw-semibold fs-5">${checkedItemsId[i] == 'swag-bio' ? 'Biometric check-up' : checkedItemsId[i] == 'swag-face' ? 'Fake face photo detection' : checkedItemsId[i] == 'swag-doc' ? 'Fake document detection' : 'Data consistency'}</div>
-                            
+                            <div class="result__element__title fw-semibold fs-5 border rounded-3 p-3 d-inline-block">${checkedItemsText[i]}</div>
                             <div class="result__element__block">
                                 
                             </div>

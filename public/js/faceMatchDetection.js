@@ -59,8 +59,8 @@ async function compareFaces() {
     }
 
     const distance = faceapi.euclideanDistance(face1.descriptor, face2.descriptor);
-    resultMessage.innerHTML += '<p class="mt-4">Евклидово расстояние между дескрипторами граней: <span class="text-frog-eye">${distance}</span></p>';
-    console.log('Euclidean distance between face descriptors:', distance)
+    resultMessage.innerHTML += `<p class="mt-4">Евклидово расстояние между дескрипторами граней: <span class="text-frog-eye">${distance}</span></p>`;
+    resultBlock.appendChild(resultMessage);
 
     return distance;
 }
@@ -84,10 +84,10 @@ async function faceMatchDetectionStart() {
         if (distance !== undefined) {
             if (distance < 0.6) {
                 resultMessage.innerHTML += '<p class="mt-4">Вывод: <span class="text-frog">Фотография соответствует паспорту.</span></p>';
-                resultMessage.innerHTML += '<span class="result-true material-symbols-rounded text-success fs-4">check_circle</span>';
+                resultMessage.innerHTML += '<span class="result-true material-symbols-rounded text-success fs-2 fs-bold">check_circle</span>';
             } else {
                 resultMessage.innerHTML += '<p class="mt-4">Вывод: Фотография не соответствует паспорту.</p>';
-                resultMessage.innerHTML += '<span class="result-false material-symbols-rounded text-danger fs-4">cancel</span>';
+                resultMessage.innerHTML += '<span class="result-false material-symbols-rounded text-danger fs-2 fs-bold">cancel</span>';
             }
            
             resultBlock.appendChild(resultMessage);
