@@ -262,7 +262,7 @@
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, enim maxime voluptates ab fugiat voluptatibus consectetur distinctio? Dolorum at, expedita aut corrupti accusamus rem delectus autem. Corrupti recusandae similique consequatur.</p>
                     </div> -->
                     <div class="text-end">
-                        <button class="btn btn-success" id="submit-btn">Проверить</button>
+                        <button class="btn btn-success" id="submit-btn" onclick="submitMethods()">Проверить</button>
                     </div>
                 </div>
             </div>
@@ -277,7 +277,7 @@
         </div>
     </main>
 
-    <script src="/public/js/fakePhotoDetection.js" type="module"></script>
+    <script src="/public/js/fakePhotoDetection.js"></script>
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
 
@@ -310,6 +310,19 @@
             // Add change event listener to file inputs to trigger the checkImages function
             $('#file-img-1, #file-img-2').on('change', checkImages);
         })  
+
+        function submitMethods() {
+            if ($("#checked-element-swag-bio").length) {
+                fakePhotoDetectionStart();
+                // Biometric check-up method
+            } else if ($("#checked-element-swag-face").length) {
+                // Fake face photo detection method
+            } else if ($("checked-element-swag-doc").length) {
+                // Fake document detection method
+            } else if ($("#checked-element-swag-data").length) {
+                // Data consistency method
+            }
+        }
 
     
         function checkImages() {
