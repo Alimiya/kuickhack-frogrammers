@@ -1,10 +1,9 @@
-
-
 async function loadModels() {
     await faceapi.nets.ssdMobilenetv1.loadFromUri('/public/jsmodels/faceapi');
     await faceapi.nets.faceLandmark68Net.loadFromUri('/public/jsmodels/faceapi');
     await faceapi.nets.faceRecognitionNet.loadFromUri('/public/jsmodels/faceapi');
-    await tf.loadGraphModel('/public/jsmodels/anti-spoofing/model.json');
+    const model = await tf.loadLayersModel('/public/jsmodels/anti-spoofing/model.json');
+    return model;
 }
 
 async function handleImageUpload(fileInputId) {
@@ -25,7 +24,11 @@ async function detectFace(imgElement) {
 }
 
 async function isRealFace(imgElement, model) {
-    const tensor = tf.browser.fromPixels(imgElement);
+    let tensor = tf.browser.fromPixels(imgElement);
+    
+    // Convert to grayscale
+    tensor = tf.image.rgbToGrayscale(tensor);
+    
     const resized = tf.image.resizeBilinear(tensor, [128, 128]);
     const normalized = tf.div(resized, 255);
     const batched = normalized.expandDims(0);
@@ -35,9 +38,8 @@ async function isRealFace(imgElement, model) {
 
     return real > 0.5;
 }
-
-async function fakeFaceDetectorStart() {
-    await loadModels();
+window.fakeFaceDetectorStart = async function() {
+    const model = await loadModels();
     const imgElement = await handleImageUpload('file-img-2');
     const detection = await detectFace(imgElement);
 
