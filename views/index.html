@@ -326,7 +326,8 @@
                 await faceMatchDetectionStart();
                 // Biometric check-up method
             } else if ($("#checked-element-swag-face").length > 0) {
-                await analyzeImage('file-img-2');
+                //await detectForgery('file-img-2');
+                await detectSplicing('file-img-2')
             } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
             } else if ($("#checked-element-swag-data").length > 0) {
