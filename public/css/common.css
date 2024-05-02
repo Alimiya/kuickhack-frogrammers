@@ -2,6 +2,7 @@
 
 :root {
     --frog-color: #AAD667;
+    --frog-eye-color: #FBD001;
 
     --swag-green: #007e61;
     --swag-orange: #e37056;
@@ -28,6 +29,14 @@ body {
 .custom-disabled-checkbox {
     background-color: rgb(221, 155, 155) !important;
     border-color: rgb(221, 155, 155) !important;
+}
+
+.text-frog-eye {
+    color: var(--frog-eye-color);
+}
+
+.text-frog {
+    color: var(--frog-color);
 }
 
 .bg-red {
