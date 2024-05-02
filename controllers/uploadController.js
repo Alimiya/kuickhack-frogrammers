@@ -1,17 +1,14 @@
 const User = require('../models/userModel')
 
 exports.compare = async (req, res) => {
-    const {iin, surName, firstName, lastName, createdAt, endsAt} = req.body
-    console.log(iin, surName, firstName, lastName, createdAt, endsAt)
+    const {iin, createdAt, endsAt} = req.body
+    console.log(iin, createdAt, endsAt)
     try {
         const user = await User.findOne({iin})
         console.log(user)
         if (!user) return res.status(404).json({message: "Такого человека не существует"})
 
         if (
-            user.surName === surName &&
-            user.firstName === firstName &&
-            user.lastName === lastName &&
             user.createdAt === createdAt &&
             user.endsAt === endsAt
         ) {
