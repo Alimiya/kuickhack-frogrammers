@@ -282,10 +282,12 @@
         </div>
     </main>
 
-    <script src="/public/js/fcheckMetadata.js"></script>
+    <script src="/public/js/checkMetadata.js"></script>
     <script src="/public/js/faceMatchDetection.js"></script>
+    <script src="/public/js/imageManipulationDetector.js"></script>
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
+    <script src="/public/js/opencv.js" type="text/javascript"></script>
 
     <script>
         var checkedItemsId = [];
@@ -324,7 +326,7 @@
                 await faceMatchDetectionStart();
                 // Biometric check-up method
             } else if ($("#checked-element-swag-face").length > 0) {
-                // Fake face photo detection method
+                await analyzeImage('file-img-2');
             } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
             } else if ($("#checked-element-swag-data").length > 0) {
