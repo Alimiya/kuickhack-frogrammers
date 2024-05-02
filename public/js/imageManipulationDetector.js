@@ -65,6 +65,7 @@ async function detectForgery(fileInputId) {
     src.delete(); gray.delete(); orb.delete(); keypoints.delete(); descriptors.delete(); matcher.delete(); matches.delete();
 }
 async function detectSplicing(fileInputId) {
+    $("#canvasId").remove();
     const imageData = await getImageData(fileInputId);
 
     // Create a new canvas and draw the image onto the canvas

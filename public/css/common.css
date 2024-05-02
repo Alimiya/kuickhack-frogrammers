@@ -42,3 +42,7 @@ body {
 .bg-red {
     background-color: rgba(234, 67, 67, 0.875);
 }
+
+#canvasId {
+    display: none;
+}
