@@ -26,7 +26,7 @@ body {
     border-color: #388fb2 !important;
 }
 
-.custom-disabled-checkbox {
+.custom-checkbox--disabled {
     background-color: rgb(221, 155, 155) !important;
     border-color: rgb(221, 155, 155) !important;
 }

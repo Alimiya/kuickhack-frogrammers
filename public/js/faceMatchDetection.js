@@ -46,3 +46,15 @@ async function faceMatchDetection(imgId, docId) {
 
     return result;
 }
+
+function handleImageUpload(fileInputId) {
+    return new Promise((resolve, reject) => {
+        const fileInput = document.getElementById(fileInputId);
+        const file = fileInput.files[0];
+        const img = new Image();
+
+        img.onload = () => resolve(img);
+        img.onerror = reject;
+        img.src = URL.createObjectURL(file);
+    });
+}

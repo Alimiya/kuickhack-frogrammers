@@ -110,39 +110,6 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="swag__element d-flex gap-4 mb-5" id="swag-face">
-                            <div class="swag__element__block w-100 rounded-3 p-3">
-                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
-                                    <div class="d-flex align-items-center gap-4">
-                                        <div
-                                            class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                            <span class="fs-3 fw-semibold font-monospace">FACE</span>
-                                        </div>
-                                        <div class="swag__element__title fw-medium">Fake face photo detection</div>
-                                        <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
-                                            на подлинность</div>
-                                    </div>
-                                    <div class="inner-right hstack gap-4">
-                                        <span class="material-symbols-rounded text-warning">demography</span>
-                                        <span class="material-symbols-rounded text-info">check_box</span>
-                                        <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
-                                    </div>
-                                </div>
-                                <div id="swag-collapse2" class="collapse swag__element__collapse">
-                                    <div class="pt-5">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="swag__checker">
-                                <div class="form-check form-switch">
-                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
-                                        style="transform: scale(1.8);">
-                                </div>
-                            </div>
-                        </div>
                         <div class="swag__element d-flex gap-4 mb-5" id="swag-doc">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
@@ -151,13 +118,13 @@
                                             class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
                                             <span class="fs-3 fw-semibold font-monospace">DOC</span>
                                         </div>
-                                        <div class="swag__element__title fw-medium">Fake document detection</div>
+                                        <div class="swag__element__title fw-medium">Fake document detection (detect splicing)</div>
                                         <div class="swag__element__description fw-light fst-italic">Проверка подлинности
                                             удостоверения личности</div>
                                     </div>
                                     <div class="inner-right hstack gap-4">
                                         <span class="material-symbols-rounded text-warning">demography</span>
-                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <span class="material-symbols-rounded text-info">check_box</span>
                                         <a href="#swag-collapse3" data-bs-toggle="collapse" id="swag-arrow1"
                                             class="material-symbols-rounded text-decoration-none text-light"
                                             aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
@@ -178,6 +145,8 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        
                         <div class="swag__element d-flex gap-4 mb-5" id="swag-data">
                             <div class="swag__element__block w-100 rounded-3 p-3">
                                 <div class="swag__element__inner d-flex justify-content-between align-items-center">
@@ -210,6 +179,39 @@
                                 <div class="form-check form-switch">
                                     <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
                                         style="transform: scale(1.8);">
+                                </div>
+                            </div>
+                        </div>
+                        <div class="swag__element d-flex gap-4 mb-5" id="swag-face">
+                            <div class="swag__element__block w-100 rounded-3 p-3">
+                                <div class="swag__element__inner d-flex justify-content-between align-items-center">
+                                    <div class="d-flex align-items-center gap-4">
+                                        <div
+                                            class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
+                                            <span class="fs-3 fw-semibold font-monospace">FACE</span>
+                                        </div>
+                                        <div class="swag__element__title fw-medium">Fake face photo detection</div>
+                                        <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
+                                            на подлинность</div>
+                                    </div>
+                                    <div class="inner-right hstack gap-4">
+                                        <span class="material-symbols-rounded text-warning">demography</span>
+                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
+                                    </div>
+                                </div>
+                                <div id="swag-collapse2" class="collapse swag__element__collapse">
+                                    <div class="pt-5">
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
+                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
+                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="swag__checker">
+                                <div class="form-check form-switch">
+                                    <input class="custom-checkbox--disabled form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
+                                        style="transform: scale(1.8);" disabled>
                                 </div>
                             </div>
                         </div>
@@ -299,17 +301,18 @@
                     if (faceMatchDetectionResult.errorType == 'no-face') {
                         displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
                     } else if (faceMatchDetectionResult.errorType == 'no-dist') {
-                        displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!')
+                        displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!');
                     }
                 }
-            } else if ($("#checked-element-swag-face").length > 0) {
-                //await detectForgery('file-doc');
-                await detectSplicing('file-doc')
             } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
+                await detectSplicing(getImgId('doc'));
             } else if ($("#checked-element-swag-data").length > 0) {
+                // Data consistency
                 await recognizeImage('file-doc');
-            }
+            } else if ($("#checked-element-swag-face").length > 0) {
+                // Fake face photo detection
+            } 
         }
 
         function displaySuccessResult(fieldSelector, specDataMessage, specData, successMessage) {
@@ -339,10 +342,10 @@
             }
 
             if (getImgInput('doc')) {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', false);
             } else {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', true);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('checked', false);
             }
         }
 
@@ -514,20 +517,6 @@
                 return $('#file-doc').attr('id');
             }
         }
-
-        function handleImageUpload(fileInputId) {
-            return new Promise((resolve, reject) => {
-                const fileInput = document.getElementById(fileInputId);
-                const file = fileInput.files[0];
-                const img = new Image();
-
-                img.onload = () => resolve(img);
-                img.onerror = reject;
-                img.src = URL.createObjectURL(file);
-            });
-        }
-
-    
     </script>
 </body>
 

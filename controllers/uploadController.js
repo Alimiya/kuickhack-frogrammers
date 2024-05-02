@@ -12,7 +12,7 @@ exports.compare = async (req, res) => {
             user.createdAt === createdAt &&
             user.endsAt === endsAt
         ) {
-            return res.status(200).json({message: "Пользователь сравнен успешно"})
+            return res.status(200).json(user)
         } else {
             return res.status(404).json({message: "Данные пользователя не совпадают"})
         }
