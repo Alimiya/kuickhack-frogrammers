@@ -27,10 +27,10 @@
                                         <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности. Поэтому он является обязательным!"><span class="material-symbols-rounded text-warning">error</span></a>
                                     </div>
                                     <div>
-                                        <label for="file-img-2">
+                                        <label for="file-doc">
                                             <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
                                         </label>
-                                        <input style="display: none;" type="file" class="form-control" id="file-img-2" accept="image/png, image/jpeg, image/jpg">
+                                        <input style="display: none;" type="file" class="form-control" id="file-doc" accept="image/png, image/jpeg, image/jpg">
                                     </div>
                                 </div>
                             </div>
@@ -51,10 +51,10 @@
                                     <div class="fw-bold hstack gap-2">
                                         <span class="material-symbols-rounded fs-2">person_book</span>Фотография вашего лица</div>
                                     <div>
-                                        <label for="file-img-1">
+                                        <label for="file-img">
                                             <div class="btn btn-success" onclick="addImage(this)">Загрузить</div>
                                         </label>
-                                        <input style="display: none;" type="file" class="form-control" id="file-img-1" accept="image/png, image/jpeg, image/jpg" />
+                                        <input style="display: none;" type="file" class="form-control" id="file-img" accept="image/png, image/jpeg, image/jpg" />
                                     </div>
                                 </div>
                             </div>
@@ -97,9 +97,6 @@
                                         <a href="#swag-collapse1" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse1">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <!-- <div id="progress" class="progress mt-3" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100">
-                                    <div class="progress-bar progress-bar-striped" style="width: 100%"></div>
-                                </div> -->
                                 <div id="swag-collapse1" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
@@ -131,11 +128,6 @@
                                         <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <!-- <div id="progress" class="progress mt-3" role="progressbar"
-                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar progress-bar-striped" style="width: 50%"></div>
-                                </div> -->
                                 <div id="swag-collapse2" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -171,11 +163,6 @@
                                             aria-expanded="false" aria-controls="swag-collapse3">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <!-- <div id="progress1" class="progress mt-3" role="progressbar"
-                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar progress-bar-striped" style="width: 0"></div>
-                                </div> -->
                                 <div id="swag-collapse3" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -186,8 +173,8 @@
                             </div>
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
-                                    <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-3"
-                                        style="transform: scale(1.8);" disabled>
+                                    <input class="form-check-input" type="checkbox" role="switch" id="swag-checkbox-3"
+                                        style="transform: scale(1.8);">
                                 </div>
                             </div>
                         </div>
@@ -211,11 +198,6 @@
                                             aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
                                     </div>
                                 </div>
-                                <!-- <div id="progress1" class="progress mt-3" role="progressbar"
-                                    aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0"
-                                    aria-valuemax="100">
-                                    <div class="progress-bar progress-bar-striped" style="width: 0%"></div>
-                                </div> -->
                                 <div id="swag-collapse4" class="collapse swag__element__collapse">
                                     <div class="pt-5">
                                         Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
@@ -227,7 +209,7 @@
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
-                                        style="transform: scale(1.8);" disabled>
+                                        style="transform: scale(1.8);">
                                 </div>
                             </div>
                         </div>
@@ -242,25 +224,8 @@
                     <h5>Выбранные методы:</h5>
                 </div>
                 <div class="submit__body" style="width: 95%;">
-                    <div id="submit-checked" class="submit__checked mb-5">
-                        <!-- <div class="checked__element d-flex justify-content-between align-items-center mb-4">
-                            <div>
-                                <div class="checked__title mb-3">Biometric check-up</div>
-                                <div id="progress" class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1000px; margin-top: 6px;">
-                                    <div class="progress-bar progress-bar-striped bg-success" style="width: 0%"></div>
-                                </div>
-                            </div>  
-                            <div class="submit__percent">0%</div>
-                        </div> -->
-                        
-                    </div>
-                    <!-- <div class="submit__empty p-3">
-                        <div class="hstack gap-3 mb-3">
-                            <span class="material-symbols-rounded fs-2">web_asset_off</span>
-                            <div class="fs-5" style="color: #ffffff68">Пусто</div>
-                        </div>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Atque, enim maxime voluptates ab fugiat voluptatibus consectetur distinctio? Dolorum at, expedita aut corrupti accusamus rem delectus autem. Corrupti recusandae similique consequatur.</p>
-                    </div> -->
+                    <div id="submit-checked" class="submit__checked mb-5"> </div>
+                   
                     <div class="text-end">
                         <button class="btn btn-success" id="submit-btn" onclick="submitMethods()">Проверить</button>
                     </div>
@@ -318,23 +283,51 @@
             });
 
             // Add change event listener to file inputs to trigger the checkImages function
-            $('#file-img-1, #file-img-2').on('change', checkImages);
+            $('#file-img, #file-doc').on('change', checkImages);
         })  
 
         async function submitMethods() {
             $("#result").show();
             displayResult();
             if ($("#checked-element-swag-bio").length > 0) {
-                await faceMatchDetectionStart();
                 // Biometric check-up method
+                const fieldSelector = '#result-swag-bio';
+                const faceMatchDetectionResult = await faceMatchDetection(getImgId('img'), getImgId('doc'));
+                if (faceMatchDetectionResult.status == 'success') {
+                    displaySuccessResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.distance) * 100), 'Фотография соответствует фото из УД')
+                } else if (faceMatchDetectionResult.status == 'error') {
+                    if (faceMatchDetectionResult.errorType == 'no-face') {
+                        displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
+                    } else if (faceMatchDetectionResult.errorType == 'no-dist') {
+                        displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!')
+                    }
+                }
             } else if ($("#checked-element-swag-face").length > 0) {
-                //await detectForgery('file-img-2');
-                await detectSplicing('file-img-2')
+                //await detectForgery('file-doc');
+                await detectSplicing('file-doc')
             } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
             } else if ($("#checked-element-swag-data").length > 0) {
-                await recognizeImage('file-img-2');
+                await recognizeImage('file-doc');
             }
+        }
+
+        function displaySuccessResult(fieldSelector, specDataMessage, specData, successMessage) {
+            const $fieldSelector = $(fieldSelector);
+            $fieldSelector.find('#result-success').show();
+            const specDataSelector = $fieldSelector.find('.result__element__specData');
+            const statusSelector = $fieldSelector.find('.result__element__status');
+            if (specData) {
+                specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
+            }
+            statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
+        }
+        
+        function displayErrorResult(fieldSelector, errorMessage) {
+            const $fieldSelector = $(fieldSelector);
+            $fieldSelector.find('#result-error').show();
+            const statusSelector = $fieldSelector.find('.result__element__status');
+            statusSelector.html(`Вывод: <span class="text-danger">${errorMessage}!</span>`);
         }
 
         function checkImages() {
@@ -346,16 +339,10 @@
             }
 
             if (getImgInput('doc')) {
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
-                $('#swag-checkbox-2').prop('disabled', false);
-                $('#swag-checkbox-4').prop('disabled', false);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
             } else {
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
-                $('#swag-checkbox-2').prop('disabled', true);
-                $('#swag-checkbox-2').prop('checked', false);
-                $('#swag-checkbox-4').prop('disabled', true);
-                $('#swag-checkbox-4').prop('checked', false);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
             }
         }
 
@@ -375,8 +362,12 @@
             for (let i = 0; i < checkedItemsId.length; i++) {
                 resultHTML += `<div class="result__element" id="result-${checkedItemsId[i]}">
                             <div class="result__element__title fw-semibold fs-5 border rounded-3 p-3 d-inline-block">${checkedItemsText[i]}</div>
-                            <div class="result__element__block">
+                            <div class="result__element__block mt-4">
+                                <p class="result__element__specData"> </p>
+                                <p class="result__element__status mt-4"> </p>
                                 
+                                <span id="result-success" class="result-true material-symbols-rounded text-success fs-2 fs-bold" style="display: none;">check_circle</span>
+                                <span id="result-error" class="result-false material-symbols-rounded text-danger fs-2 fs-bold" style="display: none;">cancel</span>
                             </div>
                             <hr/>
                         </div>`
@@ -400,7 +391,7 @@
                 for (let i = 0; i < checkedItemsId.length; i++) {
                     submitHTML += `<div class="checked__element d-flex justify-content-between align-items-end mb-4" id="checked-element-${checkedItemsId[i]}">
                             <div>
-                                <div class="checked__title fw-semibold">${checkedItemsId[i] == 'swag-bio' ? 'Biometric check-up' : checkedItemsId[i] == 'swag-face' ? 'Fake face photo detection' : checkedItemsId[i] == 'swag-doc' ? 'Fake document detection' : 'Data consistency'}</div>
+                                <div class="checked__title fw-semibold">${checkedItemsText[i]}</div>
                                 <div id="progress" class="progress" role="progressbar" aria-label="Danger striped example" aria-valuenow="100" aria-valuemin="0" aria-valuemax="100" style="width: 1100px; margin-top: 6px;">
                                     <div class="progress-bar progress-bar-striped" style="width: 0%" id="progress-${checkedItemsId[i]}"></div>
                                 </div>
@@ -435,6 +426,7 @@
                 }
             });
             displaySubmitChecked();
+            displayResult();
         }
 
         function addImage(fieldSelector) {
@@ -509,12 +501,32 @@
 
         function getImgInput(fieldSelector) {
             if (fieldSelector == 'img') {
-                return $('#file-img-1')[0].files[0];
+                return $('#file-img')[0].files[0];
             } else if (fieldSelector == 'doc') {
-                return $('#file-img-2')[0].files[0];
+                return $('#file-doc')[0].files[0];
             }
         }
-    
+
+        function getImgId(fieldSelector) {
+            if (fieldSelector == 'img') {
+                return $('#file-img').attr('id');
+            } else if (fieldSelector == 'doc') {
+                return $('#file-doc').attr('id');
+            }
+        }
+
+        function handleImageUpload(fileInputId) {
+            return new Promise((resolve, reject) => {
+                const fileInput = document.getElementById(fileInputId);
+                const file = fileInput.files[0];
+                const img = new Image();
+
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
+        }
+
     
     </script>
 </body>
