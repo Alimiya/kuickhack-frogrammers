@@ -41,6 +41,13 @@ function recognizeImage(fileInputId) {
                 const dateRegex = /\b\d{2}\.\d{2}\.\d{4}\b/g;
                 const dates = data.text.match(dateRegex);
 
+                // Extract 12-digit code using regex
+                const codeRegex = /\b\d{2}(0[1-9]|1[0-2])(0[1-9]|[12][0-9]|3[01])\d{6}\b/g;
+                const codes = data.text.match(codeRegex);
+
+                let datesString = '';
+                let codesString = '';
+
                 if (dates && dates.length > 0) {
                     // Convert strings to Date objects
                     const dateObjects = dates.map(dateStr => {
@@ -53,8 +60,6 @@ function recognizeImage(fileInputId) {
 
                     // Compare with the current date
                     const currentDate = new Date();
-                    console.log(latestDate)
-                    console.log(currentDate)
                     currentDate.setHours(0, 0, 0, 0); // Ignore time for the comparison
 
                     if (latestDate > currentDate) {
@@ -63,11 +68,17 @@ function recognizeImage(fileInputId) {
                         console.log('Документ просрочен');
                     }
 
-                    dates.forEach((date, i) => {
-                        console.log(`Date ${i + 1}:`, date);
-                    });
+                    datesString = dates.join(', ');
+                    console.log(`Dates: ${datesString}`);
                 } else {
                     console.log('No recognizable dates found in the image.');
+                }
+
+                if (codes && codes.length > 0) {
+                    codesString = codes.join(', ');
+                    console.log(`Codes: ${codesString}`);
+                } else {
+                    console.log('No recognizable codes found in the image.');
                 }
             } else {
                 console.log('No recognizable text found in the image.');
