@@ -59,7 +59,7 @@ async function compareFaces() {
     }
 
     const distance = faceapi.euclideanDistance(face1.descriptor, face2.descriptor);
-    resultMessage.innerHTML += `<p class="mt-4">Евклидово расстояние между дескрипторами граней: <span class="text-frog-eye">${distance}</span></p>`;
+    resultMessage.innerHTML += `<p class="mt-4">Лицо с фотографии соответствует лицу владельца на: <span class="text-frog-eye">${(1-distance)*100}</span></p>`;
     resultBlock.appendChild(resultMessage);
 
     return distance;
