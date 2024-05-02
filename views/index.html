@@ -288,7 +288,7 @@
     <script src="/public/vendor/axios/axios.min.js"></script>
     <script src="/public/vendor/faceapi/face-api.js"></script>
     <script src="/public/js/opencv.js" type="text/javascript"></script>
-    <script src="https://cdn.rawgit.com/naptha/tesseract.js/1.0.10/dist/tesseract.js"></script>
+    <script src='https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js'></script>
 
 
     <script>
@@ -333,7 +333,7 @@
             } else if ($("checked-element-swag-doc").length > 0) {
                 // Fake document detection method
             } else if ($("#checked-element-swag-data").length > 0) {
-                // Data consistency method
+                await recognizeImage('file-img-2');
             }
         }
 
@@ -514,7 +514,7 @@
                 return $('#file-img-2')[0].files[0];
             }
         }
-
+    
     
     </script>
 </body>
