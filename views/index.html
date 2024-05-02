@@ -205,7 +205,7 @@
                                     </div>
                                     <div class="inner-right hstack gap-4">
                                         <span class="material-symbols-rounded text-warning">demography</span>
-                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <span class="material-symbols-rounded text-info">check_box</span>
                                         <a href="#swag-collapse4" data-bs-toggle="collapse" id="swag-arrow1"
                                             class="material-symbols-rounded text-decoration-none text-light"
                                             aria-expanded="false" aria-controls="swag-collapse4">keyboard_arrow_left</a>
@@ -226,7 +226,7 @@
                             </div>
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
-                                    <input class="custom-disabled-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
+                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
                                         style="transform: scale(1.8);" disabled>
                                 </div>
                             </div>
@@ -348,11 +348,14 @@
             if (getImgInput('doc')) {
                 // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
                 $('#swag-checkbox-2').prop('disabled', false);
+                $('#swag-checkbox-4').prop('disabled', false);
             } else {
                 // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
                 // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
                 $('#swag-checkbox-2').prop('disabled', true);
                 $('#swag-checkbox-2').prop('checked', false);
+                $('#swag-checkbox-4').prop('disabled', true);
+                $('#swag-checkbox-4').prop('checked', false);
             }
         }
 
