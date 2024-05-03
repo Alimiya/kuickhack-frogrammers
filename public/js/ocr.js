@@ -38,7 +38,9 @@ function recognizeImage(fileInputId, dateStatus) {
                         if (dateStatus) {
                             if (latestDate < currentDate) {
                                 errorType = 'expired'
-                            }
+                            } else if (dates && dates.length < 2) {
+                                        errorType ='Cannot verify expiration';
+                            }               
                         }
                         datesString = dates.join(', ');
                         datesRes = datesString;
@@ -47,6 +49,10 @@ function recognizeImage(fileInputId, dateStatus) {
                             errorType = 'no-date'
                         }
                     }
+
+            
+
+
                     if (codes && codes.length > 0) {
                         codesString = codes.join(', ');
                         data = codesString;
