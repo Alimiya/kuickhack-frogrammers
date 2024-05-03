@@ -132,3 +132,55 @@ async function detectSplicing(fileInputId) {
 
     return result;
 }
+
+function detectLightClusters(imageData, thresholdRatio, minClusterSizeRatio) {
+    const width = imageData.width;
+    const height = imageData.height;
+    const data = imageData.data;
+    const visited = new Set();
+    const clusters = [];
+
+    const threshold = Math.round(thresholdRatio * 255);
+    const minClusterSize = Math.round(minClusterSizeRatio * width * height);
+
+    for (let i = 0; i < data.length; i += 4) {
+        const grayscale = 0.3 * data[i] + 0.59 * data[i + 1] + 0.11 * data[i + 2];
+        data[i] = data[i + 1] = data[i + 2] = grayscale;
+    }
+
+    function dfs(x, y, cluster) {
+        const stack = [{x, y}];
+        while (stack.length > 0) {
+            const {x, y} = stack.pop();
+            const index = y * width + x;
+            if (x < 0 || x >= width || y < 0 || y >= height || visited.has(index)) {
+                continue;
+            }
+            visited.add(index);
+
+            const pixelBrightness = data[index * 4]; 
+            if (pixelBrightness > threshold) {
+                cluster.push({x, y});
+                stack.push({x: x - 1, y});
+                stack.push({x: x + 1, y});
+                stack.push({x, y: y - 1});
+                stack.push({x, y: y + 1});
+            }
+        }
+    }
+
+    for (let y = 0; y < height; y++) {
+        for (let x = 0; x < width; x++) {
+            const cluster = [];
+            dfs(x, y, cluster);
+            if (cluster.length >= minClusterSize) {
+                clusters.push(cluster);
+            }
+        }
+    }
+
+    return clusters.map(cluster => ({
+        pixels: cluster,
+        areaPercentage: cluster.length / (width * height) * 100
+    }));
+}
