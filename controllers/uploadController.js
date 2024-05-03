@@ -1,4 +1,7 @@
 const User = require('../models/userModel')
+const Replicate = require('replicate')
+const replicate = new Replicate({auth: process.env.REPLICATE_API_TOKEN})
+const { readFile } = require("fs").promises
 
 exports.compare = async (req, res) => {
     const {iin} = req.body
@@ -33,4 +36,24 @@ exports.get = async (req,res) => {
     } catch (err) {
         res.status(500).json({message: "Internal Server Erro"})
     }
+}
+
+exports.image = async (req,res) => {
+    const file = req.file
+    const imagePath = `./public/img/${file.originalname}`
+    const imageBlob = (await readFile(imagePath)).toString("base64")
+    const image = `data:application/octet-stream;base64,${imageBlob}`
+    replicate.run(
+        "highwaywu/image-forgery-detection:ab6f81afdf0de95354d44b61c18f4dfe31dc0ad83da8b0406d57afff8f6ace08",
+        {
+            input: {
+                image: image
+            }
+        }
+    ).then(output => {
+        console.log(output);
+        return res.status(200).json(output)
+    }).catch(err => {
+        console.error(err);
+    });
 }
