@@ -28,7 +28,7 @@ const renderRoute = require('./routes/renderRoute')
 const uploadRoute = require('./routes/uploadRoute')
 
 app.use(renderRoute)
-app.use(uploadRoute)
+app.use('/api', uploadRoute)
 
 app.use((req, res, next) => {
     res.status(404).render('errors/404')

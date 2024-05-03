@@ -119,3 +119,14 @@
     border-radius: 100%;
     padding: 1rem;
 }
+
+.result-false {
+    border: 2px solid var(--bs-danger);
+    border-radius: 100%;
+    padding: 1rem;
+}
+
+.table > :not(caption) > * > * {
+    background-color: transparent !important;
+    color: #fff !important;
+}

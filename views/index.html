@@ -211,7 +211,7 @@
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
                                     <input class="custom-checkbox--disabled form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
-                                        style="transform: scale(1.8);" disabled>
+                                        style="transform: scale(1.8);">
                                 </div>
                             </div>
                         </div>
@@ -317,7 +317,9 @@
                     }
                 });
             }
+
             if ($("#checked-element-swag-doc").length > 0) {
+                // Fake document detection (detect splicing)
                 const fieldSelector = '#result-swag-doc';
                 const spinnerSelector = $('#spinner-swag-doc');
 
@@ -341,22 +343,113 @@
 
             if ($("#checked-element-swag-data").length > 0) {
                 // Data consistency
-                // await recognizeImage('file-doc');
-            } 
+                const fieldSelector = '#result-swag-data';
+                const spinnerSelector = $('#spinner-swag-data');
+
+                spinnerSelector.show();
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const recognizeImageResult = recognizeImage(getImgId('doc'), false);
+                        resolve(recognizeImageResult);
+                    }, 2000);
+                });
+
+                promise.then(recognizeImageResult => {
+                    spinnerSelector.hide();
+                    console.log(recognizeImageResult);
+                    if (recognizeImageResult.status === 'success') {
+                        displaySuccessResult(fieldSelector, 'Извлечанный ИИН', recognizeImageResult.data);
+                        getUserInfo(recognizeImageResult.data)
+                            .then(info => {
+                                const infoHTML = `<div class="result__info">
+                                    <table class="table table-striped w-50">
+                                        <tbody>
+                                        <tr>
+                                            <th scope="row">Имя</th>
+                                            <td>${info.firstName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Фамилия</th>
+                                            <td>${info.lastName}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Отчество</th>
+                                            <td>${info.surName}</td>
+                                        </tr>
+                                            <th scope="row">Дата рождения</th>
+                                            <td>${info.birthDate}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Даты выдачи</th>
+                                            <td>${info.createdAt}</td>
+                                        </tr>
+                                        <tr>
+                                            <th scope="row">Срок действия</th>
+                                            <td>${info.endsAt}</td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>`
+
+                                $(fieldSelector).find("#result-info").append(infoHTML);
+
+                                displaySuccessResult(null, null, null, 'ИИН был найден в базе данных!');
+                            })
+                            .catch(err => {
+                                console.log(err)
+                                displayErrorResult(fieldSelector, 'ИИН не найден в базе данных. Подозревается фальсификация документа')
+                            });
+                    } else {
+                        if (recognizeImageResult.errorType == 'expired'){
+                            displayErrorResult(fieldSelector, 'Документ просрочен')
+                        } else if (recognizeImageResult.errorType == 'no-date') {
+                            displayErrorResult(fieldSelector, 'Не удалось распознать даты!')
+                        } else if (recognizeImageResult.errorType == 'no-uin') {
+                            displayErrorResult(fieldSelector, 'Не удалось распознать ИИН!')
+                        } else if (recognizeImageResult.errorType == 'no-text') {
+                            displayErrorResult(fieldSelector, 'Не удалось распознать текст')
+                        }
+                    }
+                }).catch(error => {
+                    console.error('Promise Error:', error);
+                });
+            }
+
             if ($("#checked-element-swag-face").length > 0) {
                 // Fake face photo detection
             } 
         }
 
+        function getUserInfo(uin) {
+            return new Promise((resolve, reject) => {
+                $.ajax({
+                    url: "/api/compare",
+                    method: 'post',
+                    data: {
+                        iin: uin
+                    },
+                    success: function (res) {
+                        resolve(res);
+                    },
+                    error: function (err) {
+                        reject(err);
+                    }
+                });
+            });
+        }
+
+
         function displaySuccessResult(fieldSelector, specDataMessage, specData, successMessage) {
             const $fieldSelector = $(fieldSelector);
-            $fieldSelector.find('#result-success').show();
             const specDataSelector = $fieldSelector.find('.result__element__specData');
             const statusSelector = $fieldSelector.find('.result__element__status');
             if (specData) {
                 specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
             }
-            statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
+            if (successMessage){
+                $fieldSelector.find('#result-success').show();
+                statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
+            }
         }
         
         function displayErrorResult(fieldSelector, errorMessage) {
@@ -375,10 +468,13 @@
             }
 
             if (getImgInput('doc')) {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', false);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
             } else {
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
-                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', true);
+                $('#swag-checkbox-2, #swag-checkbox-3').prop('checked', false);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
+                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
             }
         }
 
@@ -399,8 +495,11 @@
                 resultHTML += `<div class="result__element" id="result-${checkedItemsId[i]}">
                             <div class="result__element__title fw-semibold fs-5 border rounded-3 p-3 d-inline-block">${checkedItemsText[i]}</div>
                             <div class="result__element__block mt-4">
-                                <p class="result__element__specData"> </p>
-                                <p class="result__element__status mt-4"> </p>
+                                <div class="flex">
+                                    <p class="result__element__specData"> </p>
+                                    <p class="result__element__status mt-4"> </p>
+                                </div>
+                                <div id="result-info"> </div>
                                 
                                 <span id="result-success" class="result-true material-symbols-rounded text-success fs-2 fs-bold" style="display: none;">check_circle</span>
                                 <span id="result-error" class="result-false material-symbols-rounded text-danger fs-2 fs-bold" style="display: none;">cancel</span>
