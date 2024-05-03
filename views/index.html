@@ -307,7 +307,8 @@
                 promise.then(faceMatchDetectionResult => {
                     spinnerSelector.hide();
                     if (faceMatchDetectionResult.status == 'success') {
-                        displaySuccessResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.data) * 100), 'Фотография соответствует фото из УД');
+                        displayDataResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.data) * 100));
+                        displaySuccessResult(fieldSelector, 'Фотография соответствует фото из УД');
                     } else {
                         if (faceMatchDetectionResult.errorType == 'no-face') {
                             displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
@@ -334,7 +335,8 @@
                 promise.then(detectSplicingResult => {
                     spinnerSelector.hide();
                     if (detectSplicingResult.status == 'success') {
-                        displaySuccessResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data, 'Фотография не склеенная')
+                        displayDataResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data);
+                        displaySuccessResult(fieldSelector, 'Фотография не склеенная');
                     } else {
                         displayErrorResult(fieldSelector, 'Фотография склеенная')
                     }
@@ -349,7 +351,7 @@
                 spinnerSelector.show();
                 const promise = new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        const recognizeImageResult = recognizeImage(getImgId('doc'), false);
+                        const recognizeImageResult = recognizeImage(getImgId('doc'), true);
                         resolve(recognizeImageResult);
                     }, 2000);
                 });
@@ -358,7 +360,7 @@
                     spinnerSelector.hide();
                     console.log(recognizeImageResult);
                     if (recognizeImageResult.status === 'success') {
-                        displaySuccessResult(fieldSelector, 'Извлечанный ИИН', recognizeImageResult.data);
+                        displayDataResult(fieldSelector, 'Извлечанный ИИН', recognizeImageResult.data);
                         getUserInfo(recognizeImageResult.data)
                             .then(info => {
                                 const infoHTML = `<div class="result__info">
@@ -393,7 +395,7 @@
 
                                 $(fieldSelector).find("#result-info").append(infoHTML);
 
-                                displaySuccessResult(null, null, null, 'ИИН был найден в базе данных!');
+                                displaySuccessResult(fieldSelector, 'ИИН был найден в базе данных');
                             })
                             .catch(err => {
                                 console.log(err)
@@ -438,18 +440,18 @@
             });
         }
 
-
-        function displaySuccessResult(fieldSelector, specDataMessage, specData, successMessage) {
+        function displayDataResult(fieldSelector, specDataMessage, specData) {
             const $fieldSelector = $(fieldSelector);
             const specDataSelector = $fieldSelector.find('.result__element__specData');
+            specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
+        }
+
+
+        function displaySuccessResult(fieldSelector, successMessage) {
+            const $fieldSelector = $(fieldSelector);
             const statusSelector = $fieldSelector.find('.result__element__status');
-            if (specData) {
-                specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
-            }
-            if (successMessage){
-                $fieldSelector.find('#result-success').show();
-                statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
-            }
+            $fieldSelector.find('#result-success').show();
+            statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
         }
         
         function displayErrorResult(fieldSelector, errorMessage) {
@@ -559,6 +561,7 @@
             });
             displaySubmitChecked();
             displayResult();
+            $("#result").hide();
         }
 
         function addImage(fieldSelector) {

@@ -8,6 +8,7 @@ function recognizeImage(fileInputId, dateStatus) {
                 img,
                 'kaz+rus+eng'
             ).then(({ data }) => {
+                let datesRes;
                 if (data && data.text) {
                     // Extract dates using regex
                     const dateRegex = /\b\d{2}\.\d{2}\.\d{4}\b/g;
@@ -40,6 +41,7 @@ function recognizeImage(fileInputId, dateStatus) {
                             }
                         }
                         datesString = dates.join(', ');
+                        datesRes = datesString;
                     } else {
                         if (dateStatus) {
                             errorType = 'no-date'
@@ -62,6 +64,9 @@ function recognizeImage(fileInputId, dateStatus) {
                 } 
                 if (data !== undefined) {
                     result.data = data;
+                }
+                if (datesRes !== undefined) {
+                    result.datesRes = datesRes;
                 }
                 resolve(result);
             }).catch(error => {
