@@ -40,9 +40,9 @@ exports.get = async (req,res) => {
     }
 }
 
-exports.image = async (req,res) => {
+exports.checkForForgery = async (req,res) => {
     const file = req.file
-    const imagePath = `./public/img/${file.originalname}`
+    const imagePath = `./public/img/image-forgery-detection/input/${file.originalname}`
     const imageBlob = (await readFile(imagePath)).toString("base64")
     const image = `data:application/octet-stream;base64,${imageBlob}`
     replicate.run(
@@ -58,13 +58,11 @@ exports.image = async (req,res) => {
             responseType: 'stream'
         });
 
-        // Создание потока для записи изображения в файл
-        const imagePath = `./public/img/${file.originalname}-image.png`;
+        const imagePath = `./public/img/image-forgery-detection/output/${file.originalname}`;
         const imageStream = fs.createWriteStream(imagePath);
 
-        // Перенаправление потока ответа на поток записи в файл
         imageResponse.data.pipe(imageStream);
-        return res.status(200).json(output)
+        return res.status(200).json(output);
     }).catch(err => {
         console.error(err)
     })

@@ -118,7 +118,7 @@
                                             class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
                                             <span class="fs-3 fw-semibold font-monospace">DOC</span>
                                         </div>
-                                        <div class="swag__element__title fw-medium">Fake document detection (detect splicing)</div>
+                                        <div class="swag__element__title fw-medium">Detect document forgery</div>
                                         <div class="swag__element__description fw-light fst-italic">Проверка подлинности
                                             удостоверения личности</div>
                                     </div>
@@ -188,7 +188,7 @@
                                     <div class="d-flex align-items-center gap-4">
                                         <div
                                             class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                            <span class="fs-3 fw-semibold font-monospace">FACE</span>
+                                            <span class="fs-3 fw-semibold font-monospace">AI</span>
                                         </div>
                                         <div class="swag__element__title fw-medium">Fake face photo detection</div>
                                         <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
@@ -327,19 +327,31 @@
                 spinnerSelector.show();
                 const promise = new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        const detectSplicingResult = detectSplicing(getImgId('doc'));
-                        resolve(detectSplicingResult);
+                        const img = new Image();
+                        img.onload = function () {
+                            const canvas = document.createElement('canvas');
+                            canvas.width = img.width;
+                            canvas.height = img.height;
+                            const ctx = canvas.getContext('2d');
+                            ctx.drawImage(img, 0, 0, img.width, img.height);
+                            const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                            const clusters = detectLightClusters(imageData, 0.06, 0.05); // 8% разницы яркости и 5% площади
+                            clusters.forEach((cluster, i) => {
+                                console.log(`Cluster ${i + 1}: Area occupied: ${cluster.areaPercentage.toFixed(2)}%`);
+                            });
+                        };
+                        img.src = '/public/img/photo_2024-05-03_23-10-30 (2).jpg';
+
+                        // const url = postDocForForgery(getImgInput('doc'));
+                        // console.log(url);
+                        // resolve(url);
                     }, 2000);
                 });
 
-                promise.then(detectSplicingResult => {
+                promise.then(url => {
                     spinnerSelector.hide();
-                    displayDataResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data);
-                    if (detectSplicingResult.status == 'success') {
-                        displaySuccessResult(fieldSelector, 'Фотография не склеенная');
-                    } else {
-                        displayErrorResult(fieldSelector, 'Фотография склеенная')
-                    }
+                    $(fieldSelector).find('#result-inner')
+                    displayDataResult(fieldSelector, 'Обработанное изображение', url);
                 })
             }
 
@@ -440,12 +452,34 @@
             });
         }
 
+        function postDocForForgery(file) {
+            return new Promise((resolve, reject) => {
+                const formData = new FormData();
+                formData.append('file', file);
+                $.ajax({
+                    url: '/api/check/forgery',
+                    method: "post",
+                    data: formData,
+                    contentType: false,
+                    processData: false,
+                    success: function (res) {
+                        resolve(res);
+                    }, error: function (err) {
+                        reject(err);
+                    }
+                })
+            })
+        }
+
         function displayDataResult(fieldSelector, specDataMessage, specData) {
             const $fieldSelector = $(fieldSelector);
             const specDataSelector = $fieldSelector.find('.result__element__specData');
-            specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
+            if (specData.startsWith('https')) {
+                specDataSelector.html(`${specDataMessage}: <a class="text-frog-eye" href=${specData}>ссылка</a>.`);
+            } else {
+                specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
+            }
         }
-
 
         function displaySuccessResult(fieldSelector, successMessage) {
             const $fieldSelector = $(fieldSelector);
@@ -648,6 +682,18 @@
             } else if (fieldSelector == 'doc') {
                 return $('#file-doc').attr('id');
             }
+        }
+
+        function handleImageUpload(fileInputId) {
+            return new Promise((resolve, reject) => {
+                const fileInput = document.getElementById(fileInputId);
+                const file = fileInput.files[0];
+                const img = new Image();
+
+                img.onload = () => resolve(img);
+                img.onerror = reject;
+                img.src = URL.createObjectURL(file);
+            });
         }
     </script>
 </body>

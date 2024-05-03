@@ -1,8 +1,8 @@
 const multer = require('multer')
 
-const storage = multer.diskStorage({
+const storageForgeModel = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'public/img/')
+        cb(null, 'public/img/image-forgery-detection/input/')
     },
     filename: function (req, file, cb) {
         const fileName = file.originalname.toLowerCase().split(' ').join('-')
@@ -10,6 +10,6 @@ const storage = multer.diskStorage({
     }
 })
 
-const upload = multer({ storage: storage })
+const uploadForgeModel = multer({ storage: storageForgeModel })
 
-module.exports = upload
+module.exports = uploadForgeModel
