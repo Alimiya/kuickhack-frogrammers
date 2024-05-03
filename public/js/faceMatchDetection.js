@@ -28,7 +28,7 @@ async function faceMatchDetection(imgId, docId) {
     } else {
         distance = faceapi.euclideanDistance(face1.descriptor, face2.descriptor);
         if (distance !== undefined) {
-            if (distance < 0.6) {
+            if (distance < 0.4) {
                 status = 'success';
             } else {
                 errorType = 'no-dist';

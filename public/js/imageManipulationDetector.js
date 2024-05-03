@@ -110,7 +110,7 @@ async function detectSplicing(fileInputId) {
     let whitePixelPercentage = (whitePixels / totalPixels) * 100;
 
     // If the percentage of white pixels is above a certain threshold, conclude that splicing was detected
-    const splicingThreshold = 1; // Adjust this threshold as needed
+    const splicingThreshold = 0.15; // Adjust this threshold as needed
     const isSpliced = whitePixelPercentage > splicingThreshold;
 
     if (isSpliced) {

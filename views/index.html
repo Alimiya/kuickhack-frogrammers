@@ -306,14 +306,14 @@
 
                 promise.then(faceMatchDetectionResult => {
                     spinnerSelector.hide();
+                    displayDataResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.data) * 100));
                     if (faceMatchDetectionResult.status == 'success') {
-                        displayDataResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.data) * 100));
                         displaySuccessResult(fieldSelector, 'Фотография соответствует фото из УД');
                     } else {
                         if (faceMatchDetectionResult.errorType == 'no-face') {
                             displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
                         } else if (faceMatchDetectionResult.errorType == 'no-dist') {
-                            displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!');
+                            displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД');
                         }
                     }
                 });
@@ -334,8 +334,8 @@
 
                 promise.then(detectSplicingResult => {
                     spinnerSelector.hide();
+                    displayDataResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data);
                     if (detectSplicingResult.status == 'success') {
-                        displayDataResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data);
                         displaySuccessResult(fieldSelector, 'Фотография не склеенная');
                     } else {
                         displayErrorResult(fieldSelector, 'Фотография склеенная')
@@ -360,7 +360,7 @@
                     spinnerSelector.hide();
                     console.log(recognizeImageResult);
                     if (recognizeImageResult.status === 'success') {
-                        displayDataResult(fieldSelector, 'Извлечанный ИИН', recognizeImageResult.data);
+                        displayDataResult(fieldSelector, 'Извлеченный ИИН', recognizeImageResult.data);
                         getUserInfo(recognizeImageResult.data)
                             .then(info => {
                                 const infoHTML = `<div class="result__info">
