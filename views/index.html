@@ -240,7 +240,7 @@
                 <div class="result__header mb-4">
                     <h5>Результат:</h5>
                 </div>
-                <div class="result__body bg-dark p-4">
+                <div class="result__body bg-dark p-4" style="width: 95%;">
                     <div class="result__inner" id="result-inner">
                     
                     </div>
@@ -294,23 +294,56 @@
             if ($("#checked-element-swag-bio").length > 0) {
                 // Biometric check-up method
                 const fieldSelector = '#result-swag-bio';
-                const faceMatchDetectionResult = await faceMatchDetection(getImgId('img'), getImgId('doc'));
-                if (faceMatchDetectionResult.status == 'success') {
-                    displaySuccessResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.distance) * 100), 'Фотография соответствует фото из УД')
-                } else if (faceMatchDetectionResult.status == 'error') {
-                    if (faceMatchDetectionResult.errorType == 'no-face') {
-                        displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
-                    } else if (faceMatchDetectionResult.errorType == 'no-dist') {
-                        displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!');
+                const spinnerSelector = $("#spinner-swag-bio");
+
+                spinnerSelector.show();
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const faceMatchDetectionResult = faceMatchDetection(getImgId('img'), getImgId('doc'));
+                        resolve(faceMatchDetectionResult);
+                    }, 2000);
+                });
+
+                promise.then(faceMatchDetectionResult => {
+                    spinnerSelector.hide();
+                    if (faceMatchDetectionResult.status == 'success') {
+                        displaySuccessResult(fieldSelector, 'Лицо с фотографии соответствует лицу владельца на', ((1 - faceMatchDetectionResult.data) * 100), 'Фотография соответствует фото из УД');
+                    } else {
+                        if (faceMatchDetectionResult.errorType == 'no-face') {
+                            displayErrorResult(fieldSelector, 'На одном или обоих изображениях лица не обнаружены');
+                        } else if (faceMatchDetectionResult.errorType == 'no-dist') {
+                            displayErrorResult(fieldSelector, 'Фотография не соответствует фото из УД!');
+                        }
                     }
-                }
-            } else if ($("#checked-element-swag-doc").length > 0) {
-                // Fake document detection method
-                const detectSplicingResult = await detectSplicing(getImgId('doc'));
-            } else if ($("#checked-element-swag-data").length > 0) {
+                });
+            }
+            if ($("#checked-element-swag-doc").length > 0) {
+                const fieldSelector = '#result-swag-doc';
+                const spinnerSelector = $('#spinner-swag-doc');
+
+                spinnerSelector.show();
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const detectSplicingResult = detectSplicing(getImgId('doc'));
+                        resolve(detectSplicingResult);
+                    }, 2000);
+                });
+
+                promise.then(detectSplicingResult => {
+                    spinnerSelector.hide();
+                    if (detectSplicingResult.status == 'success') {
+                        displaySuccessResult(fieldSelector, 'Извлеченные данные', detectSplicingResult.data, 'Фотография не склеенная')
+                    } else {
+                        displayErrorResult(fieldSelector, 'Фотография склеенная')
+                    }
+                })
+            }
+
+            if ($("#checked-element-swag-data").length > 0) {
                 // Data consistency
-                await recognizeImage('file-doc');
-            } else if ($("#checked-element-swag-face").length > 0) {
+                // await recognizeImage('file-doc');
+            } 
+            if ($("#checked-element-swag-face").length > 0) {
                 // Fake face photo detection
             } 
         }
@@ -393,10 +426,10 @@
             } else {
                 for (let i = 0; i < checkedItemsId.length; i++) {
                     submitHTML += `<div class="checked__element d-flex justify-content-between align-items-end mb-4" id="checked-element-${checkedItemsId[i]}">
-                            <div>
-                                <div class="checked__title fw-semibold">${checkedItemsText[i]}</div>
-                            </div>  
-                            <div class="submit__percent" id="percent-${checkedItemsId[i]}">0%</div>
+                            <div class="checked__title fw-semibold">${checkedItemsText[i]}</div>
+                            <div class="spinner-grow" role="status" id="spinner-${checkedItemsId[i]}" style="display:none">
+                                <span class="visually-hidden">Loading...</span>
+                            </div>
                         </div>`
                 }
                 $('#submit-btn').toggleClass('disabled', false);

@@ -64,9 +64,12 @@ async function detectForgery(fileInputId) {
     // Clean up
     src.delete(); gray.delete(); orb.delete(); keypoints.delete(); descriptors.delete(); matcher.delete(); matches.delete();
 }
+
 async function detectSplicing(fileInputId) {
     $("#canvasId").remove();
     const imageData = await getImageData(fileInputId);
+    let status = 'error';
+    let errorType;
 
     // Create a new canvas and draw the image onto the canvas
     const canvas = document.createElement('canvas');
@@ -108,11 +111,24 @@ async function detectSplicing(fileInputId) {
 
     // If the percentage of white pixels is above a certain threshold, conclude that splicing was detected
     const splicingThreshold = 1; // Adjust this threshold as needed
-    console.log(whitePixelPercentage)
     const isSpliced = whitePixelPercentage > splicingThreshold;
 
-    console.log('Is the image spliced?', isSpliced);
+    if (isSpliced) {
+        status = 'success';
+    } else {
+        errorType = 'spliced'
+    }
 
     // Clean up
     src.delete(); gray.delete(); sobel.delete(); absSobel.delete(); threshold.delete();
+
+    const result = { status };
+    if (errorType !== undefined) {
+        result.errorType = errorType;
+    } 
+    if (whitePixelPercentage !== undefined) {
+        result.data = whitePixelPercentage;
+    }
+
+    return result;
 }

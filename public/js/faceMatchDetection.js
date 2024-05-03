@@ -41,7 +41,7 @@ async function faceMatchDetection(imgId, docId) {
         result.errorType = errorType;
     } 
     if (distance !== undefined) {
-        result.distance = distance;
+        result.data = distance;
     }
 
     return result;
