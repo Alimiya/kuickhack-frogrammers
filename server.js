@@ -30,9 +30,9 @@ const uploadRoute = require('./routes/uploadRoute')
 app.use(renderRoute)
 app.use('/api', uploadRoute)
 
-// app.use((req, res, next) => {
-//     res.status(404).render('errors/404')
-// })
+app.use((req, res, next) => {
+    res.status(404).render('errors/404')
+})
 
 
 const start = async () => {
