@@ -14,7 +14,6 @@
     "@tensorflow/tfjs": "^3.20.0",
     "axios": "^1.6.8",
     "body-parser": "^1.20.2",
-    "canvas": "^2.11.2",
     "cookie-parser": "^1.4.6",
     "dotenv": "^16.4.5",
     "ejs": "^3.1.10",

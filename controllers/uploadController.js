@@ -2,7 +2,6 @@ const User = require('../models/userModel')
 const Replicate = require('replicate')
 const replicate = new Replicate({auth: process.env.REPLICATE_API_TOKEN})
 const { readFile } = require('fs').promises
-const {createCanvas, loadImage} = require('canvas')
 const axios = require('axios')
 const fs = require('fs')
 
