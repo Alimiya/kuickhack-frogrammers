@@ -24,7 +24,7 @@
                                 <div class="hstack gap-4">
                                     <div class="fw-bold hstack gap-2">
                                         <span class="material-symbols-rounded fs-2">demography</span>Удостоверение личности
-                                        <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности. Поэтому он является обязательным!"><span class="material-symbols-rounded text-warning">error</span></a>
+                                        <a class="custom-warning-icon" style="margin-top: 6px;" tabindex="0" role="button" data-bs-toggle="popover" data-bs-trigger="focus" data-bs-content="Все методы используют документ удостоверения личности. Поэтому он является обязательным! Не использовать документы с KASPI и EGOV"><span class="material-symbols-rounded text-warning">error</span></a>
                                     </div>
                                     <div>
                                         <label for="file-doc">
@@ -99,8 +99,18 @@
                                 </div>
                                 <div id="swag-collapse1" class="collapse swag__element__collapse">
                                     <div class="pt-5">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam quod architecto. At excepturi placeat amet sit minus dicta soluta, provident deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                        <p><span class="fw-bold fs-5" style="color: var(--swag-green);">Bio check-up</span> - способ подтверждения права собственности при помощи проверки лица. Является надежным способом дополнительной проверки и в совокупности с другими типами проверки послужит отличным инструментом усиления безопасности системы. Использует модели стороннего весьма популярного API - faceapi.</p>
                                     </div>
+                                    <img class="mb-4"  src="/public/img/swag-img/bio1.png" alt="" width="800">
+                                    <ul>
+                                        <li class="text-uppercase fw-semibold mb-3">faceLandmark68Net.</li>
+                                        <p><span class="text-frog">99.38% точности на бенчмарке LFW (Labeled Faces in the Wild)</span></p>
+                                        <li class="text-uppercase fw-semibold mb-3">faceRecognitionNet.</li>
+                                        <p><span class="text-frog">Размер квантованной модели около 5,4 МБ (модель ssd_mobilenetv1).</span></p>
+                                        <li class="text-uppercase fw-semibold mb-3">ssdMobilenetv1.</li>
+                                        <p><span class="text-frog">Этот пакет реализует очень легкий и быстрый, но точный детектор 68 точек лиц.</span></p>
+                                    </ul>
+                                    
                                 </div>
                             </div>
                             <div class="swag__checker">
@@ -132,10 +142,14 @@
                                 </div>
                                 <div id="swag-collapse3" class="collapse swag__element__collapse">
                                     <div class="pt-5">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                        <span class="fw-bold fs-5" style="color: var(--swag-orange);">Detect document forgery</span> - комплексный способ выявления такого вида подделки документов как склеивание или наложение фотографий друг на друга. Модель была тренирована на датасете, учась определять места наличия невидимого шума. В качестве выходного продукта проверки вам представится картинка с видимым следом изменений редактирования.
                                     </div>
+                                    <div class="d-flex mt-3 mb-4">
+                                        <img src="/public/img/swag-img/n1.png" alt="" width="600">
+                                        <img src="/public/img/swag-img/n2.png" alt="" width="400">
+                                    </div>
+                                    <div class="mb-4">Точность: <span class="text-frog">AUC (Area Under the Curve) - 0.833</span></div>
+                                    <div>Автор: <a href="https://replicate.com/highwaywu/image-forgery-detection/api/learn-more#commonjs" class="text-frog">highwaywu</a></div>
                                 </div>
                             </div>
                             <div class="swag__checker">
@@ -168,10 +182,16 @@
                                     </div>
                                 </div>
                                 <div id="swag-collapse4" class="collapse swag__element__collapse">
-                                    <div class="pt-5">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                    <div class="pt-5 mb-4">
+                                        <span class="fw-bold fs-5" style="color: var(--swag-violet);">Data consistency</span>  - надежный тип проверки, при наличии базы данных пользователей. Проверка целостности информации позволяет быстро оценить соответствие полей предоставленного документа с настоящей информацией из базы данных. 
+                                    </div>
+                                    <div class="text-center mb-4">
+                                        <img src="/public/img/swag-img/t1.png" alt="" width="1000">
+                                    </div>
+                                    <h5 class="fw-semibold">Tesseract-ocr engine</h5>
+                                    <p>В Tesseract 4 добавлен новый распознавательный движок на основе нейронной сети <span class="text-frog">(LSTM)</span>, который ориентирован на распознавание строк, но также по-прежнему поддерживает устаревший распознавательный движок Tesseract из Tesseract 3, который распознает шаблоны символов. Совместимость с Tesseract 3 обеспечивается с помощью устаревшей модели <span class="text-frog">OCR-движка</span> (--oem 0). </p>
+                                    <div>
+
                                     </div>
                                 </div>
                             </div>
@@ -190,21 +210,23 @@
                                             class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
                                             <span class="fs-3 fw-semibold font-monospace">BAR</span>
                                         </div>
-                                        <div class="swag__element__title fw-medium">Fake face photo detection</div>
-                                        <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
-                                            на подлинность</div>
+                                        <div class="swag__element__title fw-medium">Barcode decoding</div>
+                                        <div class="swag__element__description fw-light fst-italic">Сравнение штрих-кода с ИИН</div>
                                     </div>
                                     <div class="inner-right hstack gap-4">
                                         <span class="material-symbols-rounded text-warning">demography</span>
-                                        <span class="material-symbols-rounded text-danger">indeterminate_check_box</span>
+                                        <span class="material-symbols-rounded text-info">check_box</span>
                                         <a href="#swag-collapse2" data-bs-toggle="collapse" id="swag-arrow1" class="material-symbols-rounded text-decoration-none text-light" aria-expanded="false" aria-controls="swag-collapse2">keyboard_arrow_left</a>
                                     </div>
                                 </div>
                                 <div id="swag-collapse2" class="collapse swag__element__collapse">
                                     <div class="pt-5">
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Maiores debitis aliquam
-                                        quod architecto. At excepturi placeat amet sit minus dicta soluta, provident
-                                        deserunt molestias perferendis molestiae earum corporis beatae quasi.
+                                        <span class="fw-bold fs-5" style="color: var(--swag-pink);">Barcode decoding</span> - метод, при котором используется расшифровка штрих-кода на документе, а затем сравнивается с ИИН пользователя. Необходимый уровень проверки, при наличии фотографии хорошего качества.
+                                    </div>
+                                    <div class="mt-4"><span class="text-frog">QuaggaJS library</span> содержит методы локализации штрих-кодов их дешифровки.</div>
+                                    <div class="d-flex mt-4">
+                                        <img src="/public/img/swag-img/s1.png" alt="" style="width: 100%;">
+                                        <img src="/public/img/swag-img/s2.png" alt="">
                                     </div>
                                 </div>
                             </div>
@@ -333,9 +355,6 @@
                         const responce = postDocForForgery(getImgInput('doc'));
                         console.log(responce);
                         resolve(responce);
-
-                        // const responce = 'temp';
-                        // resolve(responce);
                     }, 2000);
                 });
 
@@ -448,35 +467,29 @@
                     }, 2000);
                 });
 
-                promise
-                    .then(res => {
-                        $.ambiance({
-                            message: "Compare barcode with uin is done!",
-                            type: "success"
-                        })
-                        spinnerSelector.hide();
-                        if (res.statusType == 'success') {
-                            displayDataResult(fieldSelector, 'Расшифровка выявленного баркода', res.barcode);
-                            displayDataResult(fieldSelector, 'Выявленный из документа ИИН', res.code);
-                        } else {
-                            if (res.errorType == 'no-uin') {
-                                displayErrorResult(fieldSelector, 'Не удалось распознать ИИН')
-                            } else if (res.errorType == 'no-text') {
-                                displayErrorResult(fieldSelector, 'Не удалось распознать текст')
-                            } else if (res.errorType == 'no-bar') {
-                                displayErrorResult(fieldSelector, 'Не удалось расшифровать баркод')
-                            } else if (res.errorType == 'no-match') {
-                                displayErrorResult(fieldSelector, 'Баркод и ИИН не совпадают')
-                            }
+                promise.then(responce => {
+                    console.log(responce)
+                    $.ambiance({
+                        message: "Compare barcode with uin is done!",
+                        type: "success"
+                    })
+                    spinnerSelector.hide();
+                    if (responce.status == 'success') {
+                        displayDataResult(fieldSelector, 'Расшифровка выявленного баркода', responce.barcode);
+                        displayDataResult(fieldSelector, 'Выявленный из документа ИИН', responce.code);
+                        displaySuccessResult(fieldSelector, 'Баркод и ИИН совпадают')
+                    } else {
+                        if (responce.errorType == 'no-uin') {
+                            displayErrorResult(fieldSelector, 'Не удалось распознать ИИН')
+                        } else if (responce.errorType == 'no-text') {
+                            displayErrorResult(fieldSelector, 'Не удалось распознать текст')
+                        } else if (responce.errorType == 'no-bar') {
+                            displayErrorResult(fieldSelector, 'Не удалось расшифровать баркод')
+                        } else if (responce.errorType == 'no-match') {
+                            displayErrorResult(fieldSelector, 'Баркод и ИИН не совпадают')
                         }
-                    })
-                    .catch(err => {
-                        $.ambiance({
-                            message: "Error while comparing barcode with uin",
-                            type: "error"
-                        })
-                        displayErrorResult(fieldSelector, 'Ошибка при сравнении штрих-кода с uin')
-                    })
+                    }
+                })
             } 
         }
 

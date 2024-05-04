@@ -10,7 +10,7 @@ async function handleImageUpload(fileInputId) {
     });
 }
 
-async function decodeBarcode(fileInputId, status, errorType) {
+async function decodeBarcode(fileInputId, errorType) {
     return new Promise((resolve, reject) => {
         handleImageUpload(fileInputId).then(img => {
             Quagga.decodeSingle({
@@ -75,7 +75,7 @@ async function compareCodes(fileInputId) {
     try {
         let status = 'error';
         let errorType;
-        const barcode = await decodeBarcode(fileInputId, status, errorType);
+        const barcode = await decodeBarcode(fileInputId, errorType);
         const code = await recognizeImg(fileInputId, errorType);
 
         if (barcode === code) {
@@ -95,6 +95,8 @@ async function compareCodes(fileInputId) {
         if (code !== undefined) {
             result.code = code;
         }
+
+        return result;
     } catch (error) {
         console.error(error);
     }
