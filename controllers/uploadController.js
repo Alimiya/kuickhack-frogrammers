@@ -62,7 +62,11 @@ exports.checkForForgery = async (req,res) => {
         const imageStream = fs.createWriteStream(imagePath);
 
         imageResponse.data.pipe(imageStream);
-        return res.status(200).json(output);
+        const response = {
+            filename: file.originalname,
+            uri: output
+        };
+        return res.status(200).json(response);
     }).catch(err => {
         console.error(err)
     })
