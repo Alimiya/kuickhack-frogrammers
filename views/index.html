@@ -330,31 +330,44 @@
                 spinnerSelector.show();
                 const promise = new Promise((resolve, reject) => {
                     setTimeout(() => {
-                        const img = new Image();
-                        img.onload = function () {
-                            const canvas = document.createElement('canvas');
-                            canvas.width = img.width;
-                            canvas.height = img.height;
-                            const ctx = canvas.getContext('2d');
-                            ctx.drawImage(img, 0, 0, img.width, img.height);
-                            const imageData = ctx.getImageData(0, 0, img.width, img.height);
-                            const clusters = detectLightClusters(imageData, 0.06, 0.05); // 8% разницы яркости и 5% площади
-                            clusters.forEach((cluster, i) => {
-                                console.log(`Cluster ${i + 1}: Area occupied: ${cluster.areaPercentage.toFixed(2)}%`);
-                            });
-                        };
-                        img.src = '/public/img/photo_2024-05-03_23-10-30 (2).jpg';
-
-                        // const url = postDocForForgery(getImgInput('doc'));
-                        // console.log(url);
-                        // resolve(url);
+                        const responce = postDocForForgery(getImgInput('doc'));
+                        console.log(responce);
+                        resolve(responce);
                     }, 2000);
                 });
 
-                promise.then(url => {
+                promise.then(res => {
+                    $.ambiance({
+                        message: "Detect document forgery is done",
+                        type: "success"
+                    })
                     spinnerSelector.hide();
                     $(fieldSelector).find('#result-inner')
-                    displayDataResult(fieldSelector, 'Обработанное изображение', url);
+                    // displayDataResult(fieldSelector, 'Обработанное изображение', res.uri);
+                    const img = new Image();
+                    img.onload = function () {
+                        const canvas = document.createElement('canvas');
+                        canvas.width = img.width;
+                        canvas.height = img.height;
+                        const ctx = canvas.getContext('2d');
+                        ctx.drawImage(img, 0, 0, img.width, img.height);
+                        const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                        const clusters = detectLightClusters(imageData, 0.475, 0.000025);
+                        let clusterFlag = false;
+                        clusters.forEach((cluster, i) => {
+                            console.log(`Cluster ${i}: ${cluster.areaPercentage}`)
+                            if (cluster.areaPercentage > 1) {
+                                displayDataResult(fieldSelector, 'Светимость кластера по выборке', cluster.areaPercentage);
+                                displayErrorResult(fieldSelector, 'Фотография обработанна');
+                                clusterFlag = true;
+                                return;
+                            }
+                        });
+                        if (!clusterFlag) {
+                            displaySuccessResult(fieldSelector, 'Фотография не обработанна. Светимость кластера по выборке довольно маленькая')
+                        }
+                    };
+                    img.src = `/public/img/image-forgery-detection/output/${filename}`;
                 })
             }
 
@@ -477,10 +490,12 @@
         function displayDataResult(fieldSelector, specDataMessage, specData) {
             const $fieldSelector = $(fieldSelector);
             const specDataSelector = $fieldSelector.find('.result__element__specData');
-            if (specData.startsWith('https')) {
-                specDataSelector.html(`${specDataMessage}: <a class="text-frog-eye" href=${specData}>ссылка</a>.`);
+            const specDataString = specData.toString(); // Convert specData to string
+
+            if (specDataString.startsWith('https')) {
+                specDataSelector.append(`${specDataMessage}: <a class="text-frog-eye mb-4" href=${specDataString}>${specDataString}</a>.<br/>`);
             } else {
-                specDataSelector.html(`${specDataMessage}: <span class="text-frog-eye">${specData}</span>.`);
+                specDataSelector.append(`${specDataMessage}: <span class="text-frog-eye mb-2">${specDataString}</span>.<br/>`);
             }
         }
 
