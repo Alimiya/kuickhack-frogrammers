@@ -140,7 +140,7 @@
                             </div>
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
-                                    <input class="form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
+                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-2"
                                         style="transform: scale(1.8);">
                                 </div>
                             </div>
@@ -188,7 +188,7 @@
                                     <div class="d-flex align-items-center gap-4">
                                         <div
                                             class="swag__element__shortTitle d-flex justify-content-center align-items-center rounded-1">
-                                            <span class="fs-3 fw-semibold font-monospace">AI</span>
+                                            <span class="fs-3 fw-semibold font-monospace">BAR</span>
                                         </div>
                                         <div class="swag__element__title fw-medium">Fake face photo detection</div>
                                         <div class="swag__element__description fw-light fst-italic">Проверка фотографии лица
@@ -210,7 +210,7 @@
                             </div>
                             <div class="swag__checker">
                                 <div class="form-check form-switch">
-                                    <input class="custom-checkbox--disabled form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
+                                    <input class="custom-checkbox form-check-input" type="checkbox" role="switch" id="swag-checkbox-4"
                                         style="transform: scale(1.8);">
                                 </div>
                             </div>
@@ -333,42 +333,31 @@
                         const responce = postDocForForgery(getImgInput('doc'));
                         console.log(responce);
                         resolve(responce);
+
+                        // const responce = 'temp';
+                        // resolve(responce);
                     }, 2000);
                 });
 
-                promise.then(res => {
-                    $.ambiance({
-                        message: "Detect document forgery is done",
-                        type: "success"
+                promise
+                    .then(res => {
+                        $.ambiance({
+                            message: "Detect document forgery is done",
+                            type: "success"
+                        })
+                        spinnerSelector.hide();
+                        displayDataResult(fieldSelector, 'Обработанное изображение', res.uri);
+                        displayButtonResult(fieldSelector, 'Нажмите для проверки подлинности фото', 'analyzeForge()')
+                        const path = `/public/img/image-forgery-detection/output/${res.filename}`;
+                        localStorage.setItem('forgePath', path);
                     })
-                    spinnerSelector.hide();
-                    $(fieldSelector).find('#result-inner')
-                    // displayDataResult(fieldSelector, 'Обработанное изображение', res.uri);
-                    const img = new Image();
-                    img.onload = function () {
-                        const canvas = document.createElement('canvas');
-                        canvas.width = img.width;
-                        canvas.height = img.height;
-                        const ctx = canvas.getContext('2d');
-                        ctx.drawImage(img, 0, 0, img.width, img.height);
-                        const imageData = ctx.getImageData(0, 0, img.width, img.height);
-                        const clusters = detectLightClusters(imageData, 0.475, 0.000025);
-                        let clusterFlag = false;
-                        clusters.forEach((cluster, i) => {
-                            console.log(`Cluster ${i}: ${cluster.areaPercentage}`)
-                            if (cluster.areaPercentage > 1) {
-                                displayDataResult(fieldSelector, 'Светимость кластера по выборке', cluster.areaPercentage);
-                                displayErrorResult(fieldSelector, 'Фотография обработанна');
-                                clusterFlag = true;
-                                return;
-                            }
-                        });
-                        if (!clusterFlag) {
-                            displaySuccessResult(fieldSelector, 'Фотография не обработанна. Светимость кластера по выборке довольно маленькая')
-                        }
-                    };
-                    img.src = `/public/img/image-forgery-detection/output/${filename}`;
-                })
+                    .catch(err => {
+                        $.ambiance({
+                            message: "Error fetching",
+                            type: "error"
+                        })
+                        displayErrorResult(fieldSelector, 'Связь с Replicate не установлен')
+                    })
             }
 
             if ($("#checked-element-swag-data").length > 0) {
@@ -433,9 +422,9 @@
                         if (recognizeImageResult.errorType == 'expired'){
                             displayErrorResult(fieldSelector, 'Документ просрочен')
                         } else if (recognizeImageResult.errorType == 'no-date') {
-                            displayErrorResult(fieldSelector, 'Не удалось распознать даты!')
+                            displayErrorResult(fieldSelector, 'Не удалось распознать даты')
                         } else if (recognizeImageResult.errorType == 'no-uin') {
-                            displayErrorResult(fieldSelector, 'Не удалось распознать ИИН!')
+                            displayErrorResult(fieldSelector, 'Не удалось распознать ИИН')
                         } else if (recognizeImageResult.errorType == 'no-text') {
                             displayErrorResult(fieldSelector, 'Не удалось распознать текст')
                         }
@@ -446,8 +435,77 @@
             }
 
             if ($("#checked-element-swag-face").length > 0) {
-                // Fake face photo detection
+                // Barcode
+                const fieldSelector = '#result-swag-face';
+                const spinnerSelector = $('#spinner-swag-face');
+
+                spinnerSelector.show();
+                const promise = new Promise((resolve, reject) => {
+                    setTimeout(() => {
+                        const responce = compareCodes(getImgId('doc'));
+                        console.log(responce);
+                        resolve(responce);
+                    }, 2000);
+                });
+
+                promise
+                    .then(res => {
+                        $.ambiance({
+                            message: "Compare barcode with uin is done!",
+                            type: "success"
+                        })
+                        spinnerSelector.hide();
+                        if (res.statusType == 'success') {
+                            displayDataResult(fieldSelector, 'Расшифровка выявленного баркода', res.barcode);
+                            displayDataResult(fieldSelector, 'Выявленный из документа ИИН', res.code);
+                        } else {
+                            if (res.errorType == 'no-uin') {
+                                displayErrorResult(fieldSelector, 'Не удалось распознать ИИН')
+                            } else if (res.errorType == 'no-text') {
+                                displayErrorResult(fieldSelector, 'Не удалось распознать текст')
+                            } else if (res.errorType == 'no-bar') {
+                                displayErrorResult(fieldSelector, 'Не удалось расшифровать баркод')
+                            } else if (res.errorType == 'no-match') {
+                                displayErrorResult(fieldSelector, 'Баркод и ИИН не совпадают')
+                            }
+                        }
+                    })
+                    .catch(err => {
+                        $.ambiance({
+                            message: "Error while comparing barcode with uin",
+                            type: "error"
+                        })
+                        displayErrorResult(fieldSelector, 'Ошибка при сравнении штрих-кода с uin')
+                    })
             } 
+        }
+
+        function analyzeForge() {
+            const fieldSelector = '#result-swag-doc';
+            const img = new Image();
+            img.onload = function () {
+                const canvas = document.createElement('canvas');
+                canvas.width = img.width;
+                canvas.height = img.height;
+                const ctx = canvas.getContext('2d');
+                ctx.drawImage(img, 0, 0, img.width, img.height);
+                const imageData = ctx.getImageData(0, 0, img.width, img.height);
+                const clusters = detectLightClusters(imageData, 0.475, 0.000025);
+                let clusterFlag = false;
+                clusters.forEach((cluster, i) => {
+                    console.log(`Cluster ${i}: ${cluster.areaPercentage}`)
+                    if (cluster.areaPercentage > 1) {
+                        displayDataResult(fieldSelector, 'Светимость кластера по выборке', cluster.areaPercentage);
+                        displayErrorResult(fieldSelector, 'Фотография обработанна');
+                        clusterFlag = true;
+                        return;
+                    }
+                });
+                if (!clusterFlag) {
+                    displaySuccessResult(fieldSelector, 'Фотография не обработанна. Светимость кластера по выборке довольно маленькая')
+                }
+            };
+            img.src = localStorage.getItem('forgePath');
         }
 
         function getUserInfo(uin) {
@@ -505,6 +563,12 @@
             $fieldSelector.find('#result-success').show();
             statusSelector.html(`Вывод: <span class="text-frog">${successMessage}!</span>`);
         }
+
+        function displayButtonResult(fieldSelector, buttonText, onClickFunction) {
+            const $fieldSelector = $(fieldSelector);
+            const infoSelector = $fieldSelector.find('#result-info');
+            infoSelector.append(`<button type="button" class="btn btn-success" onclick=${onClickFunction}>${buttonText}</button>`);
+        }
         
         function displayErrorResult(fieldSelector, errorMessage) {
             const $fieldSelector = $(fieldSelector);
@@ -522,13 +586,10 @@
             }
 
             if (getImgInput('doc')) {
-                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', false);
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', false);
             } else {
-                $('#swag-checkbox-2, #swag-checkbox-3').prop('disabled', true);
-                $('#swag-checkbox-2, #swag-checkbox-3').prop('checked', false);
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
-                // $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('disabled', true);
+                $('#swag-checkbox-2, #swag-checkbox-3, #swag-checkbox-4').prop('checked', false);
             }
         }
 

@@ -10,20 +10,26 @@ async function handleImageUpload(fileInputId) {
     });
 }
 
-async function decodeBarcode(fileInputId) {
+async function decodeBarcode(fileInputId, status, errorType) {
     return new Promise((resolve, reject) => {
         handleImageUpload(fileInputId).then(img => {
             Quagga.decodeSingle({
                 decoder: {
                     readers: ["code_128_reader"] 
                 },
-                locate: true, 
+                locate: true,
                 src: img.src 
             }, function(result){
-                if(result.codeResult) {
-                    resolve(result.codeResult.code.toString());  
-                    console.log(result.codeResult.code.toString());
+                if (result !== null) { // Check if result is not null
+                    if(result.codeResult) {
+                        resolve(result.codeResult.code.toString());  
+                        console.log(result.codeResult.code.toString());
+                    } else {
+                        errorType = 'no-bar';
+                        reject("Баркод не расшифрован");
+                    }
                 } else {
+                    errorType = 'no-bar';
                     reject("Баркод не расшифрован");
                 }
             });
@@ -33,7 +39,7 @@ async function decodeBarcode(fileInputId) {
     });
 }
 
-function recognizeImg(fileInputId) {
+function recognizeImg(fileInputId, errorType) {
     return new Promise((resolve, reject) => {
         handleImageUpload(fileInputId).then(img => {
             Tesseract.recognize(
@@ -49,9 +55,11 @@ function recognizeImg(fileInputId) {
                         resolve(codes[0].toString());  
                         console.log(codes[0].toString());
                     } else {
+                        errorType = 'no-uin'
                         reject('ИИН не извлечен');
                     }
                 } else {
+                    errorType = 'no-text'
                     reject('No text recognized');
                 }
             }).catch(error => {
@@ -65,13 +73,27 @@ function recognizeImg(fileInputId) {
 
 async function compareCodes(fileInputId) {
     try {
-        const barcode = await decodeBarcode(fileInputId);
-        const code = await recognizeImg(fileInputId);
+        let status = 'error';
+        let errorType;
+        const barcode = await decodeBarcode(fileInputId, status, errorType);
+        const code = await recognizeImg(fileInputId, errorType);
 
         if (barcode === code) {
+            status = 'success';
             console.log("Проверка баркода пройдена");
         } else {
+            errorType = 'no-match';
             console.log("Проверка баркода провалена");
+        }
+        const result = { status };
+        if (errorType !== undefined) {
+            result.errorType = errorType;
+        } 
+        if (barcode !== undefined) {
+            result.barcode = barcode;
+        }
+        if (code !== undefined) {
+            result.code = code;
         }
     } catch (error) {
         console.error(error);
