@@ -14,13 +14,13 @@ Before you begin, ensure you have the following installed on your machine:
 1. Clone this repository to your local machine using:
 
     ```bash
-    git clone <repository_url>
+    git clone https://github.com/Alimiya/kuickhack-frogrammers
     ```
 
 2. Navigate to the project directory:
 
     ```bash
-    cd <project_directory>
+    cd kuickhack-frogrammers
     ```
 
 3. Install dependencies using npm:
