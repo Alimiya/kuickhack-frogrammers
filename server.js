@@ -4,7 +4,7 @@ const bodyParser = require('body-parser')
 const cookieParser = require('cookie-parser')
 const path = require('path')
 const expressLayouts = require('express-ejs-layouts')
-require("dotenv").config({path: "config/.env"})
+    require("dotenv").config({path: "config/.env"})
 
 const app = express()
 
